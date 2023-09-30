@@ -43,8 +43,8 @@ export const register = async (registerData) => {
     localStorage.setItem('RegisterErrorMessage', '');
     return response.data;
   } catch (error) {
-    console.log(error.response.data.error);
-    localStorage.setItem('RegisterErrorMessage', error.response.data.error);
+    console.error(error);
+    localStorage.setItem('RegisterErrorMessage', error.response.data.message);
     throw error;
   }
 };
