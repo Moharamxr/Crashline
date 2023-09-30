@@ -1,6 +1,6 @@
 form
 {
-    
+
     text-align: center;
     /* border: 1px solid black; */
     border-radius: 5px;
@@ -33,9 +33,11 @@ input
     outline: none;
     transition: border-color 0.3s ease-in-out; */
     width: 85%;
+    height: 40px;
     border: none;
-    background-color: #fff;
+    background-color: #ffffff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #6936F5;
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
@@ -61,3 +63,9 @@ a{
     font-size: 14px;
     
   }
+
+  .form-margin{
+    margin-top: 6rem;
+    
+  }
+  

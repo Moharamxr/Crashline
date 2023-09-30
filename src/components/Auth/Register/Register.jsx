@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from 'react-router-dom';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import './register.css';
-import { register } from '../../../services/auth.service';
+import { NavLink } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./register.css";
+import { register } from "../../../services/auth.service";
 
 const Register = () => {
-
   const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
+  if (window.location.pathname !== "/register") {
+    localStorage.setItem("RegisterErrorMessage", "");
+  }
+
+  const handleRefresh = () => {
+    localStorage.setItem("RegisterErrorMessage", "");
+    console.log("Page is being refreshed");
+  };
 
   useEffect(() => {
-    if (formErrors) {
-      setShowError(true);
+    window.addEventListener("beforeunload", handleRefresh);
 
+    return () => {
+      window.removeEventListener("beforeunload", handleRefresh);
+    };
+  }, []);
+  useEffect(() => {
+    if (formErrors) {
       const timeout = setTimeout(() => {
         setShowError(false);
       }, 3000);
@@ -22,43 +34,40 @@ const Register = () => {
     }
   }, []);
 
-
   const initialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   };
 
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is required'),
-    lastName: Yup.string().required('Last Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required'),
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   const handleSubmit = async (values) => {
-    // Perform registration logic here
-    
     console.log(values);
     try {
-      const data = await register(values);
-      console.log('Registration successful');
+      await register(values);
+      console.log("Registration successful");
     } catch (error) {
       if (formErrors) {
-          setShowError(true);
-    
-          const timeout = setTimeout(() => {
-            setShowError(false);
-          }, 3000);
-    
-          return () => clearTimeout(timeout);
-        }
+        setShowError(true);
+
+        const timeout = setTimeout(() => {
+          setShowError(false);
+        }, 3000);
+
+        return () => clearTimeout(timeout);
+      }
     }
   };
 
   return (
-    <div className="container mt-4 w-100 d-flex flex-column justify-content-center align-items-center">
+    <div className=" form-margin w-100 d-flex flex-column justify-content-center align-items-center ">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -67,10 +76,10 @@ const Register = () => {
         {({ isValid }) => (
           <Form className="w-30 text-center bg-white registerForm">
             <div className="container">
-              <h1 className="mt-5 logo">CrashLine</h1>
+              <h1 className="mt-5 logo">Crashline</h1>
               <span className="text-danger fw-bold text-center">
-                   {showError && <>{formErrors}</>}
-                    </span>
+                {showError && <>{formErrors}</>}
+              </span>
               <div className="dv1">
                 <Field
                   type="text"
@@ -79,7 +88,11 @@ const Register = () => {
                   placeholder="First Name"
                   className="p-1 mt-5 w-75"
                 />
-                <ErrorMessage name="firstName" component="p" className="error-message" />
+                <ErrorMessage
+                  name="firstName"
+                  component="p"
+                  className="error-message"
+                />
               </div>
               <div className="dv1 mt-2">
                 <Field
@@ -89,7 +102,11 @@ const Register = () => {
                   placeholder="Last Name"
                   className="p-1 mt-2 w-75"
                 />
-                <ErrorMessage name="lastName" component="p" className="error-message" />
+                <ErrorMessage
+                  name="lastName"
+                  component="p"
+                  className="error-message"
+                />
               </div>
               <div className="dv1 mt-2">
                 <Field
@@ -99,7 +116,11 @@ const Register = () => {
                   placeholder="Email"
                   className="p-1 mt-2 w-75"
                 />
-                <ErrorMessage name="email" component="p" className="error-message" />
+                <ErrorMessage
+                  name="email"
+                  component="p"
+                  className="error-message"
+                />
               </div>
               <div className="dv1 mt-2">
                 <Field
@@ -109,13 +130,17 @@ const Register = () => {
                   placeholder="Password"
                   className="p-1 mt-2 w-75"
                 />
-                <ErrorMessage name="password" component="p" className="error-message" />
+                <ErrorMessage
+                  name="password"
+                  component="p"
+                  className="error-message"
+                />
               </div>
 
               <button
                 type="submit"
                 className="btn btn-dark mt-3 bg-color w-75 mb-5"
-                style={{ backgroundColor: '#6936F5' }}
+                style={{ backgroundColor: "#6936F5" }}
                 disabled={!isValid}
               >
                 Sign Up

@@ -9,6 +9,22 @@ const Login = () => {
   const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
 
+  if (window.location.pathname !== "/login") {
+    localStorage.setItem("LoginErrorMessage", "");
+  }
+
+  const handleRefresh = () => {
+    localStorage.setItem("LoginErrorMessage", "");
+    console.log("Page is being refreshed");
+  };
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleRefresh);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleRefresh);
+    };
+  }, []);
+
   useEffect(() => {
     if (formErrors) {
       setShowError(true);
@@ -32,11 +48,9 @@ const Login = () => {
   });
 
   const handleSubmit = async (values) => {
-    // Perform login logic here
-
     console.log(values);
     try {
-      const data = await login(values);
+      await login(values);
       console.log("Login successful");
     } catch (error) {
       console.error(error);
@@ -53,7 +67,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container vh-100 w-100 d-flex flex-column justify-content-center align-items-center ">
+    <div className="form-margin w-100 d-flex flex-column justify-content-center align-items-center ">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
