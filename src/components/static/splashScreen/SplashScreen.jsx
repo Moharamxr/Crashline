@@ -12,8 +12,8 @@ console.log('firstcccc')
 
   return (
     <div className="container">
-        <div className="row centred">
-            <img className='splashScreen w-50' src={logo} alt="logo" />
+        <div className=" centred">
+            <img className='splashScreen ' src={logo} alt="logo" />
         </div>
     </div>
   )
