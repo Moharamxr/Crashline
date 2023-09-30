@@ -13,15 +13,15 @@ export const login = async (loginData) => {
     );
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('userData', JSON.stringify(loginData));
-    // localStorage.setItem('LoginErrorMessage', '');
+    localStorage.setItem('LoginErrorMessage', '');
     // localStorage.setItem('authToken',response.data.token);
     // localStorage.setItem('role',response.data.role)
 
     // console.log(response.data.token);
     return response.data;
   } catch (error) {
-    console.log(error.response.data.error);
-    // localStorage.setItem('LoginErrorMessage', error.response.data.error);
+    console.log(error.response.data.message);
+    localStorage.setItem('LoginErrorMessage', error.response.data.message);
     // localStorage.setItem('authToken','')
     throw error;
   }

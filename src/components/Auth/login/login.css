@@ -72,3 +72,6 @@ a{
 .custom-button {
     background-color: #6936F5;
   }
+  .error{
+    color: red;
+  }
