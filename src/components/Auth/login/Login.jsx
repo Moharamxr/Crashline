@@ -20,7 +20,14 @@ const Login = () => {
     // Perform login logic here
     console.log('Login successful');
     console.log(values);
-    // const data = await login(values);
+    try {
+      const data = await login(values);
+
+    } catch (error) {
+      console.error(error);
+
+    }
+    
   };
 
   return (

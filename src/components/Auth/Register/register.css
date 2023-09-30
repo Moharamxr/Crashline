@@ -53,16 +53,6 @@ input::placeholder {
 }
 
 
-@media (max-width: 768px) {
-.registerForm {
-    width: 80%!important;
-    margin-top: 30%;
-    }
-
-.signUp {
-    width: 80%!important;
-    }
-}
 a{
     text-decoration: none;
 }

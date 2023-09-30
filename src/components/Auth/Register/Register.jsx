@@ -24,11 +24,17 @@ const Register = () => {
     // Perform registration logic here
     console.log('Registration successful');
     console.log(values);
-    // const data = await register(values);
+    try {
+      const data = await register(values);
+
+    } catch (error) {
+      console.error(error)
+    }
+    
   };
 
   return (
-    <div className="container mt-5 w-100 d-flex flex-column justify-content-center align-items-center">
+    <div className="container mt-4 w-100 d-flex flex-column justify-content-center align-items-center">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -80,7 +86,7 @@ const Register = () => {
 
             <button
               type="submit"
-              className="btn btn-dark m-3 bg-color w-75"
+              className="btn btn-dark mt-3 bg-color w-75 mb-5"
               style={{ backgroundColor: '#6936F5' }}
             >
               Sign Up
@@ -88,7 +94,7 @@ const Register = () => {
           </div>
         </Form>
       </Formik>
-      <div className="signUp w-30 m-5 pt-3 text-center bg-white">
+      <div className="signUp w-30 mt-5 pt-3 text-center bg-white">
         <p>
           Already have an account?
           <NavLink to="/login" className="logo">
