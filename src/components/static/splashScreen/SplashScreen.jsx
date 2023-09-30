@@ -8,8 +8,8 @@ const SplashScreen = () => {
   setTimeout(() => {
     navigate('/login')
   }, 2000);
+console.log(first)
 
-  
   return (
     <div className="container">
         <div className="row centred">
