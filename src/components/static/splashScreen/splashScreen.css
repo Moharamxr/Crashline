@@ -1,0 +1,15 @@
+.splashScreen {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  @media only screen and (min-width: 480px) {
+    .splashScreen{
+       width: 25%;
+        height: 65%;
+    
+    }
+  }
