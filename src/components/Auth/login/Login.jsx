@@ -15,6 +15,8 @@ const Login = () => {
 
   //     const timeout = setTimeout(() => {
   //       setShowError(false);
+  //       localStorage.setItem("LoginErrorMessage", "");
+
   //     }, 3000);
 
   //     return () => clearTimeout(timeout);
@@ -40,20 +42,21 @@ const Login = () => {
       console.log("Login successful");
     } catch (error) {
       console.error(error);
-      if (formErrors) {
+      
         setShowError(true);
 
         const timeout = setTimeout(() => {
           setShowError(false);
+          localStorage.setItem("LoginErrorMessage", "");
         }, 3000);
 
         return () => clearTimeout(timeout);
-      }
+      
     }
   };
 
   return (
-    <div className="container vh-100 w-100 d-flex flex-column justify-content-center align-items-center ">
+    <div className="form-margin  w-100 d-flex flex-column justify-content-center align-items-center ">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -64,7 +67,7 @@ const Login = () => {
             <div className="container">
               <h1 className="mt-5 mb-5 logo">Crashline</h1>
               <span className="text-danger fw-bold text-center">
-                {showError && <>{formErrors}</>}
+                {showError && <>Email or Password is not valid</>}
               </span>
               <div className="dv1 p-2">
                 <Field
