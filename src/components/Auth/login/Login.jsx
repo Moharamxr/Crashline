@@ -6,9 +6,9 @@ import "./login.css";
 import { login } from "../../../services/auth.service";
 
 const Login = () => {
-  const formErrors = localStorage.getItem("LoginErrorMessage");
+  // const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   // useEffect(() => {
   //   if (formErrors) {
   //     setShowError(true);
@@ -35,23 +35,21 @@ const Login = () => {
 
   const handleSubmit = async (values) => {
     // Perform login logic here
-
+    setIsLoading(true);
     console.log(values);
     try {
-      const data = await login(values);
-      console.log("Login successful");
+      await login(values);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
+      setShowError(true);
       console.error(error);
-      
-        setShowError(true);
+      const timeout = setTimeout(() => {
+        setShowError(false);
+        localStorage.setItem("LoginErrorMessage", "");
+      }, 3000);
 
-        const timeout = setTimeout(() => {
-          setShowError(false);
-          localStorage.setItem("LoginErrorMessage", "");
-        }, 3000);
-
-        return () => clearTimeout(timeout);
-      
+      return () => clearTimeout(timeout);
     }
   };
 
@@ -95,7 +93,7 @@ const Login = () => {
                 disabled={!isValid}
                 style={{ backgroundColor: "#6936F5" }}
               >
-                Sign In
+                {isLoading ? <>Signing In...</> : <>Sign In</>}
               </button>
             </div>
           </Form>

@@ -8,19 +8,20 @@ import { register } from "../../../services/auth.service";
 const Register = () => {
   const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (formErrors) {
-      setShowError(true);
+  // useEffect(() => {
+  //   if (formErrors) {
+  //     setShowError(true);
 
-      const timeout = setTimeout(() => {
-        setShowError(false);
-        localStorage.setItem("RegisterErrorMessage", "");
-      }, 3000);
+  //     const timeout = setTimeout(() => {
+  //       setShowError(false);
+  //       localStorage.setItem("RegisterErrorMessage", "");
+  //     }, 3000);
 
-      return () => clearTimeout(timeout);
-    }
-  }, []);
+  //     return () => clearTimeout(timeout);
+  //   }
+  // }, []);
 
   const initialValues = {
     firstName: "",
@@ -37,14 +38,14 @@ const Register = () => {
 
   const handleSubmit = async (values) => {
     // Perform registration logic here
-
+    setIsLoading(true);
     console.log(values);
     try {
-      const data = await register(values);
-      console.log("Registration successful");
+      await register(values);
+      setShowError(false);
     } catch (error) {
       setShowError(true);
-
+      setIsLoading(false);
       const timeout = setTimeout(() => {
         setShowError(false);
         localStorage.setItem("RegisterErrorMessage", "");
@@ -131,7 +132,7 @@ const Register = () => {
                 style={{ backgroundColor: "#6936F5" }}
                 disabled={!isValid}
               >
-                Sign Up
+                {isLoading ? <>Signing up...</> : <>Sign up</>}
               </button>
             </div>
           </Form>
