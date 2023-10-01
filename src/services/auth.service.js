@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const login = async (loginData) => {
   try {
     const response = await axios.post(
@@ -22,7 +21,6 @@ export const login = async (loginData) => {
     throw error;
   }
 };
-
 export const register = async (registerData) => {
   let response;
   try {
