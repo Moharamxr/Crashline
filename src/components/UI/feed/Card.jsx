@@ -16,7 +16,7 @@ const Card = () => {
 
       <img
         src={img}
-        width={0}
+        width={1000}
         height={400}
         className="card-img-top"
         alt="Post"

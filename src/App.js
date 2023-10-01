@@ -5,6 +5,7 @@ import Register from "./components/Auth/Register/Register";
 import SplashScreen from "./components/static/splashScreen/SplashScreen";
 import Feed from "./components/UI/feed/Feed";
 import Sidebar from "./components/UI/sidebar/Sidebar";
+import Profile from "./components/UI/profile/Profile";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route path="/feed" element={<Sidebar />} />
-        <Route path="/profile" element={<Feed/>} />
+        <Route path="/profile" element={<Profile/>} />
         <Route path="/createPost" element={<Feed />} />
         
       </Routes>

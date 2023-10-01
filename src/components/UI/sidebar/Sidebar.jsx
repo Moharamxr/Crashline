@@ -9,93 +9,95 @@ import createPostIcon from "../../../assets/assets/create-post icon.png";
 import profileIcon from "../../../assets/assets/icons8-account-24.png";
 import Card from "../feed/Card";
 import Feed from "../feed/Feed";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <nav id="sidebar">
-        <div class="sidebar-header">
+        <div className="sidebar-header">
           <h3>Crashline</h3>
         </div>
-        <ul class="list-unstyled components">
-          <li class="active">
+        <ul className="list-unstyled components">
+          <li className="active">
             <a href="#">
-              <img class="side-icon" src={homeIcon} alt="homeIcon" /> Home
+              <img className="side-icon" src={homeIcon} alt="homeIcon" /> Home
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="side-icon" src={searchIcon} alt="" /> Search
+              <img className="side-icon" src={searchIcon} alt="" /> Search
             </a>
           </li>
           <li>
             <a href="#pageSubmenu">
-              <img class="side-icon" src={reelsIcon} alt="" />
+              <img className="side-icon" src={reelsIcon} alt="" />
               Reels
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="side-icon" src={messagesIcon} alt="" />
+              <img className="side-icon" src={messagesIcon} alt="" />
               Messages
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="side-icon" src={notificationsIcon} alt="" />
+              <img className="side-icon" src={notificationsIcon} alt="" />
               Notification
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="side-icon" src={createPostIcon} alt="" />
+              <img className="side-icon" src={createPostIcon} alt="" />
               Create Post
             </a>
           </li>
           <li>
-            <a href="#">
-              <img class="side-icon" src={profileIcon} alt="" />
+            <NavLink to={'/profile'}>
+              <img className="side-icon" src={profileIcon} alt="" />
               Profile
-            </a>
+            </NavLink>
           </li>
         </ul>
       </nav>
-      <nav id="bottom-nav" class="mobile-only">
-        <ul class="bottom-nav-list">
-          <li class="active">
+      <nav id="bottom-nav" className="mobile-only">
+        <ul className="bottom-nav-list">
+          <li className="active">
             <a href="#">
-              <img class="bottom-icon" src={homeIcon} alt="homeIcon" />
+              <img className="bottom-icon" src={homeIcon} alt="homeIcon" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="bottom-icon" src={searchIcon} alt="" />
+              <img className="bottom-icon" src={searchIcon} alt="" />
             </a>
           </li>
           <li>
             <a href="#pageSubmenu">
-              <img class="bottom-icon" src={reelsIcon} alt="" />
+              <img className="bottom-icon" src={reelsIcon} alt="" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="bottom-icon" src={messagesIcon} alt="" />
+              <img className="bottom-icon" src={messagesIcon} alt="" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="bottom-icon" src={notificationsIcon} alt="" />
+              <img className="bottom-icon" src={notificationsIcon} alt="" />
             </a>
           </li>
           <li>
             <a href="#">
-              <img class="bottom-icon" src={createPostIcon} alt="" />
+              <img className="bottom-icon" src={createPostIcon} alt="" />
             </a>
           </li>
           <li>
-            <a href="#">
-              <img class="bottom-icon" src={profileIcon} alt="" />
-            </a>
+          <NavLink to={'/profile'}>
+              <img className="side-icon" src={profileIcon} alt="" />
+              
+            </NavLink>
           </li>
         </ul>
       </nav>
