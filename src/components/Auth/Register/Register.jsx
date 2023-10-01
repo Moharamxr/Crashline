@@ -53,6 +53,7 @@ const Register = () => {
 
       return () => clearTimeout(timeout);
     }
+    setIsLoading(false);
   };
 
   return (

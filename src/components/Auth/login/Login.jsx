@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./login.css";
@@ -9,20 +9,7 @@ const Login = () => {
   // const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   if (formErrors) {
-  //     setShowError(true);
-
-  //     const timeout = setTimeout(() => {
-  //       setShowError(false);
-  //       localStorage.setItem("LoginErrorMessage", "");
-
-  //     }, 3000);
-
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, []);
-
+  const navigate = useNavigate();
   const initialValues = {
     email: "",
     password: "",
@@ -40,6 +27,7 @@ const Login = () => {
     try {
       await login(values);
       setIsLoading(false);
+      navigate('/feed')
     } catch (error) {
       setIsLoading(false);
       setShowError(true);
@@ -51,6 +39,7 @@ const Login = () => {
 
       return () => clearTimeout(timeout);
     }
+    setIsLoading(false);
   };
 
   return (

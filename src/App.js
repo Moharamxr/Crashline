@@ -1,9 +1,11 @@
-// import logo from './logo.svg';
 import "./App.css";
 import Login from "./components/Auth/login/Login";
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/Auth/Register/Register";
 import SplashScreen from "./components/static/splashScreen/SplashScreen";
+import Feed from "./components/UI/feed/Feed";
+import Sidebar from "./components/UI/sidebar/Sidebar";
+
 
 function App() {
   
@@ -13,6 +15,11 @@ function App() {
         <Route path="/" element={<SplashScreen />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        <Route path="/feed" element={<Sidebar />} />
+        <Route path="/profile" element={<Feed/>} />
+        <Route path="/createPost" element={<Feed />} />
+        
       </Routes>
     </>
   );
