@@ -29,15 +29,7 @@ const Feed = () => {
           <div className="col ">
           <img className="side-icon " src={profileIcon} alt="profileIcon" />
           </div>
-          <div className="col ">
-          <img className="side-icon " src={profileIcon} alt="profileIcon" />
-          </div>
-          <div className="col ">
-          <img className="side-icon " src={profileIcon} alt="profileIcon" />
-          </div>
-          <div className="col ">
-          <img className="side-icon " src={profileIcon} alt="profileIcon" />
-          </div>
+          
         </div>
       </div>
 
