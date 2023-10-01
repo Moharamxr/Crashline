@@ -8,7 +8,6 @@ const SplashScreen = () => {
   setTimeout(() => {
     navigate('/login')
   }, 2000);
-console.log('firstcccc')
 
   return (
     <div className="container">
