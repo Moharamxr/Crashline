@@ -14,10 +14,11 @@ export const login = async (loginData) => {
     console.log("Login successful");
     localStorage.setItem('userData', JSON.stringify(loginData));
     localStorage.setItem('LoginErrorMessage', '');
+    console.log(response.data)
     return response.data;
   } catch (error) {
-    console.log(error.response.data.message);
-    localStorage.setItem('LoginErrorMessage', error.response.data.message);
+    console.log(error.response.data.error);
+    localStorage.setItem('LoginErrorMessage', error.response.data.error);
     throw error;
   }
 };
