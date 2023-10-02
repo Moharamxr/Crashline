@@ -10,6 +10,7 @@ import profileIcon from "../../../assets/assets/icons8-account-24.png";
 import Card from "../feed/Card";
 import Feed from "../feed/Feed";
 import { NavLink } from "react-router-dom";
+import Nav from "../top-nav/Nav";
 
 const Sidebar = () => {
   return (
@@ -19,10 +20,10 @@ const Sidebar = () => {
           <h3>Crashline</h3>
         </div>
         <ul className="list-unstyled components">
-          <li className="active">
-            <a href="#">
+          <li className="active h-100">
+            <NavLink to={"/feed"}>
               <img className="side-icon" src={homeIcon} alt="homeIcon" /> Home
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#">
@@ -54,7 +55,7 @@ const Sidebar = () => {
             </a>
           </li>
           <li>
-            <NavLink to={'/profile'}>
+            <NavLink to={"/profile"}>
               <img className="side-icon" src={profileIcon} alt="" />
               Profile
             </NavLink>
@@ -94,14 +95,18 @@ const Sidebar = () => {
             </a>
           </li>
           <li>
-          <NavLink to={'/profile'}>
+            <NavLink to={"/profile"}>
               <img className="side-icon" src={profileIcon} alt="" />
-              
             </NavLink>
           </li>
         </ul>
       </nav>
       <div className="container">
+        <div className="row">
+          <div className="col">
+            <Nav />
+          </div>
+        </div>
         <div className="row centred">
           <div className="col-md-6">
             <Feed />

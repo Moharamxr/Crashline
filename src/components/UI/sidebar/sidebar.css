@@ -53,48 +53,57 @@ a:focus {
     display: flex;
     width: 100%;
     align-items: stretch;
-  }
-  
-  #sidebar {
-    min-width: 170px;
+}
+
+#sidebar {
+  display: block;
+    min-width: 200px;
     max-width: 25%;
+    bottom: 0;
     background: #ffffff;
     color: #6936F5;
     transition: all 0.3s;
-  }
-  
-  #sidebar .sidebar-header {
+    height: 100vh;
+    position: fixed; /* Add position: fixed to fix the sidebar's position */
+    top: 0; /* Position the sidebar at the top of the viewport */
+    left: 0; /* Position the sidebar at the left of the viewport */
+    overflow-y: auto; /* Add overflow-y: auto to enable scrolling within the sidebar if needed */
+}
+
+#sidebar .sidebar-header {
     padding: 20px;
     background: #ffffff;
-  }
-  
-  #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-  }
-  
-  #sidebar ul li a {
-    padding: 10px;
+}
+
+#sidebar ul.components {
+    padding:  1px;
+    border-bottom: 1px solid #ffffff;
+   
+}
+
+#sidebar ul li a {
+    padding: 14%;
+    
     font-size: 1.1em;
     display: block;
     text-decoration: none;
     color: #6936F5;
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-  }
-  
-  #sidebar ul li a:hover {
+    background: #fdfdfd;
+}
+
+#sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
-  }
-  
-  .side-icon {
+}
+
+.side-icon {
     width: 30px;
     height: 30px;
     margin-right: 5px;
-  }
-  
-  #bottom-nav {
+}
+
+#bottom-nav {
     display: none;
     background: #ffffff;
     position: fixed;
@@ -102,26 +111,36 @@ a:focus {
     left: 0;
     width: 100%;
     z-index: 999;
-  }
-  
-  .bottom-nav-list {
+}
+
+.bottom-nav-list {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
-    list-style: none; /* Add this line to remove the list dots */
-  }
-  
-  .bottom-icon {
+    list-style: none; 
+}
+
+.bottom-icon {
     width: 30px;
     height: 30px;
-  }
+}
+
+#top-nav {
+  display: none;
+  background: #ffffff;
   
-  @media (max-width: 576px) {
+  width: 100%;
+}
+
+@media (max-width: 770px) {
     #sidebar {
-      display: none;
+        display: none;
     }
-  
+
     #bottom-nav {
+        display: block;
+    }
+    #top-nav{
       display: block;
     }
-  }
+}

@@ -11,8 +11,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
-    email: "",
-    password: "",
+    email: "ahmed@test.com",
+    password: "1234",
   };
 
   const validationSchema = Yup.object().shape({
@@ -62,6 +62,7 @@ const Login = () => {
                   id="email"
                   name="email"
                   placeholder="Email"
+                  
                   className="p-1 mt-5 w-75"
                 />
                 <ErrorMessage name="email" component="p" className="error" />
@@ -71,6 +72,7 @@ const Login = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  
                   className="p-1 w-75"
                 />
                 <ErrorMessage name="password" component="p" className="error" />

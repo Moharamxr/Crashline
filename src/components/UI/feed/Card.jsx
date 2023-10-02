@@ -3,6 +3,8 @@ import img from "../../../assets/7592517501_4_1_8.jpg";
 import likeIcon from "../../../assets/assets/favorite-icon.png";
 import commentIcon from "../../../assets/assets/comment-icon.png";
 import profileIcon from "../../../assets/assets/user.png";
+import sendIcon from "../../../assets/assets/send-message icon.png";
+
 
 const Card = () => {
   return (
@@ -24,6 +26,7 @@ const Card = () => {
       <div className="card-body">
         <img className="side-icon" src={likeIcon} alt="likeIcon" />
         <img className="side-icon ms-2" src={commentIcon} alt="commentIcon" />
+        <img className="side-icon ms-2" src={sendIcon} alt="commentIcon" />
       </div>
     </div>
   );
