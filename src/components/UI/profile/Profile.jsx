@@ -17,6 +17,7 @@ const Profile = () => {
     lastName: "",
   });
 
+  
   const [error, setError] = useState(null);
   const [internet, setInternet] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +27,8 @@ const Profile = () => {
       setIsLoading(true);
       if (internet) {
         const data = await getUserPostsById(userId);
-        setPosts(data.posts);
+        setPosts(data.posts.reverse());
+        
         setError(null);
         setInternet(true);
         setIsLoading(false);
@@ -66,6 +68,7 @@ const Profile = () => {
   useEffect(() => {
     getUserPosts();
     getUserInfo();
+    
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +81,7 @@ const Profile = () => {
     setIsOpen(false);
     console.log("modal closed");
   };
+  const path ='https://crashline.onrender.com/'
   return (
     <>
       <div className="container-fluid">
@@ -89,7 +93,7 @@ const Profile = () => {
                   <div className="">
                     <img
                       className="profile-img rounded-circle "
-                      src={profilePhoto}
+                      src={user.picture?(path+user.picture):(profilePhoto)}
                       alt="profilePhoto"
                     />
                   </div>
@@ -97,7 +101,7 @@ const Profile = () => {
                 <div className="col-8  offset-1">
                   <div className="row ">
                     <div className="col-sm-3 offset-1 col-8">
-                      <span className="t-color fw-bold">user_name</span>
+                      <span className="t-color fw-bold">{user.firstName} {user.lastName}</span>
                     </div>
                     <div className="col-sm-4 col-xs-4 col-10 ">
                       <button
@@ -120,7 +124,7 @@ const Profile = () => {
                   </div>
                   <div className="pff row  mt-1">
                     <div className="col-3  t-color text-center">
-                      <span>Posts&nbsp;&nbsp; 0</span>
+                      <span>Posts {posts.length}</span>
                     </div>
                     <div className="col-4 t-color text-center">
                       <span>Followers 0</span>

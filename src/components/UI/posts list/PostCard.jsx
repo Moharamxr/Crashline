@@ -23,7 +23,7 @@ const PostCard = ({ p, getData ,user }) => {
         <div className="col d-flex">
           <img
             className="side-icon m-3 me-0 rounded-circle"
-            src={img}
+            src={user.picture?(path+user.picture):(img)}
             alt="profileIcon"
           />
           <p className="fw-bold logo m-3">
@@ -52,7 +52,7 @@ const PostCard = ({ p, getData ,user }) => {
         <div className="card-text logo ps-1">
           <p className="">{post.likesCount} likes</p>
           <p className="text-dark"><span className="logo fw-medium">
-              {post.creator.firstName} {post.creator.lastName}  {' '}
+          {post.creator.firstName} {user&&(user.firstName)} {post.creator.lastName}{user&&(user.lastName)}  {' '}
             </span>
             
             {post.content}

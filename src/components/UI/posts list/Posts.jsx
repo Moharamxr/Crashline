@@ -12,7 +12,7 @@ const Posts = () => {
       setIsLoading(true);
       if (internet) {
         const data = await getPosts();
-        setPosts(data.posts);
+        setPosts(data.posts.reverse());
         setError(null);
         setInternet(true);
         setIsLoading(false);
