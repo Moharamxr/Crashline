@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { addPost } from "../../../services/posts.service";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = ({ isOpen, onClose }) => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('new post');
   const [content, setContent] = useState('');
-
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -18,11 +19,13 @@ const CreatePost = ({ isOpen, onClose }) => {
       image: image,
       content: content,
     };
-
+onClose();
     try {
       await addPost(newData)
-    } catch (error) {
       
+      navigate('/feed')
+    } catch (error) {
+      onClose();
     }
   };
   return (
