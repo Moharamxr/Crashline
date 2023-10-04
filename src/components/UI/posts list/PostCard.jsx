@@ -5,7 +5,7 @@ import commentIcon from "../../../assets/assets/comment-icon.png";
 import sendIcon from "../../../assets/assets/send-message icon.png";
 import { addLike } from "../../../services/posts.service";
 
-const PostCard = ({ p, getData }) => {
+const PostCard = ({ p, getData ,user }) => {
   const path = "https://crashline.onrender.com/";
   const post = p;
   
@@ -28,7 +28,7 @@ const PostCard = ({ p, getData }) => {
           />
           <p className="fw-bold logo m-3">
             
-            {post.creator.firstName} {post.creator.lastName}
+            {post.creator.firstName} {user&&(user.firstName)} {post.creator.lastName}{user&&(user.lastName)}
           </p>
         </div>
       </div>

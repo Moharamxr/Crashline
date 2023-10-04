@@ -47,7 +47,7 @@ const Profile = () => {
       setIsLoading(true);
       if (internet) {
         const data = await getUserInfoById(userId);
-         setUser(data.user);
+        setUser(data.user);
         setError(null);
         setInternet(true);
         setIsLoading(false);
@@ -136,15 +136,16 @@ const Profile = () => {
               </div>
               <div className="row centred">
                 <div className="col-12">
-                  <div className="row mb-2">
+                  <div className="row centred mb-2 pe-1 ps-1">
                     {posts.map((post) => (
-                      
+                      <div className="col-lg-4 ">
                         <PostCard
                           key={post._id}
                           p={post}
+                          user={user}
                           getData={getUserPosts}
                         />
-                      
+                      </div>
                     ))}
                     <div className="mt-5">.</div>
                   </div>
