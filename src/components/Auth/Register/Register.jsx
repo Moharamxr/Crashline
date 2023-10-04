@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, {  useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./register.css";
@@ -9,20 +9,7 @@ const Register = () => {
   const formErrors = localStorage.getItem("RegisterErrorMessage");
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  // useEffect(() => {
-  //   if (formErrors) {
-  //     setShowError(true);
-
-  //     const timeout = setTimeout(() => {
-  //       setShowError(false);
-  //       localStorage.setItem("RegisterErrorMessage", "");
-  //     }, 3000);
-
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, []);
-
+  const navigate = useNavigate(false);
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -43,6 +30,7 @@ const Register = () => {
     try {
       await register(values);
       setShowError(false);
+      navigate("/login");
     } catch (error) {
       setShowError(true);
       setIsLoading(false);
@@ -66,7 +54,7 @@ const Register = () => {
         {({ isValid }) => (
           <Form className="w-30 text-center bg-white registerForm">
             <div className="container">
-              <h1 className="mt-5 logo">CrashLine</h1>
+              <h1 className="mt-5 logo">Crashline</h1>
               <span className="text-danger fw-bold text-center">
                 {showError && <>{formErrors}</>}
               </span>
@@ -139,7 +127,7 @@ const Register = () => {
           </Form>
         )}
       </Formik>
-      <div className="signUp w-30 mt-5 pt-3 text-center bg-white">
+      <div className="signUp w-30 mt-4 pt-3 text-center bg-white">
         <p>
           Already have an account?
           <NavLink to="/login" className="logo">

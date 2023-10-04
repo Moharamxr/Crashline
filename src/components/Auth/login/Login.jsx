@@ -11,8 +11,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
-    email: "ahmed@test.com",
-    password: "1234",
+    email: "admin@test.com",
+    password: "Admin123",
   };
 
   const validationSchema = Yup.object().shape({
@@ -90,7 +90,7 @@ const Login = () => {
           </Form>
         )}
       </Formik>
-      <div className="signUp m-1 w-30 m-5 pt-3 text-center bg-white">
+      <div className="signUp  w-30 mt-4 pt-3 text-center bg-white">
         <p>
           Don't have an account?
           <NavLink className="logo" to="/register">

@@ -1,50 +1,4 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-/* body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
-
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}
-
-a,
-a:hover,
-a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-}
-
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-} */
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -64,14 +18,14 @@ a:focus {
     color: #6936F5;
     transition: all 0.3s;
     height: 100vh;
-    position: fixed; /* Add position: fixed to fix the sidebar's position */
-    top: 0; /* Position the sidebar at the top of the viewport */
-    left: 0; /* Position the sidebar at the left of the viewport */
-    overflow-y: auto; /* Add overflow-y: auto to enable scrolling within the sidebar if needed */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    overflow-y: auto; 
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    padding: 15px 20px 8px 25px; 
     background: #ffffff;
 }
 
