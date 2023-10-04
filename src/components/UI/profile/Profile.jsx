@@ -138,13 +138,13 @@ const Profile = () => {
                 <div className="col-12">
                   <div className="row mb-2">
                     {posts.map((post) => (
-                      <div className="col-4 ">
+                      
                         <PostCard
                           key={post._id}
                           p={post}
                           getData={getUserPosts}
                         />
-                      </div>
+                      
                     ))}
                     <div className="mt-5">.</div>
                   </div>
