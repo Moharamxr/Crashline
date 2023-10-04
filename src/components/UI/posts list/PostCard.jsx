@@ -23,7 +23,7 @@ const PostCard = ({ p, getData ,user }) => {
         <div className="col d-flex">
           <img
             className="side-icon m-3 me-0 rounded-circle"
-            src={user.picture?(path+user.picture):(img)}
+            src={user&&user.picture?(path+user.picture):(img)}
             alt="profileIcon"
           />
           <p className="fw-bold logo m-3">
