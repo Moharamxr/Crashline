@@ -11,14 +11,11 @@ const TopBar = () => {
             <h2 className="logo ">Crashline</h2>
           </div>
           <div className="col-1 offset-7 ">
-            <img
-              className="side-icon"
-              src={notificationIcon}
-              alt="notificationIcon"
-            />
+          <i className="bi bi-heart side-icon" />
+
           </div>
           <div className="col-1  me-0">
-            <img className="side-icon" src={chatIcon} alt="chatIcon" />
+          <i className="bi bi-chat side-icon" />
           </div>
         </div>
       </div>

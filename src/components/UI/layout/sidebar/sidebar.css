@@ -47,30 +47,32 @@
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #6936F5;
     background: #fff;
 }
 
 .side-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+    margin-left: 0px;
 }
 
 #bottom-nav {
     display: none;
     background: #ffffff;
+    color: #6936F5;
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    z-index: 999;
+    width:100%;
+    z-index: 2;
 }
 
 .bottom-nav-list {
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 10px 0 0;
     list-style: none; 
 }
 
@@ -97,4 +99,16 @@
     #top-nav{
       display: block;
     }
+}
+.outlined-icon {
+  border: 1px solid black;
+  border-radius: 50%; 
+}
+.fs{
+    font-size: 1.3em;
+    margin-right: 0;
+}
+.bi{
+    color: #6936F5;
+    font-size: large;
 }

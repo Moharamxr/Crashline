@@ -171,10 +171,3 @@ export const addComment = async (id, content) => {
 };
 
 
-// const formData = new FormData();
-//     formData.append("addressLine", updatedAddress.addressLine);
-//     formData.append("country", updatedAddress.country);
-//     formData.append("city", updatedAddress.city);
-//     formData.append("state", updatedAddress.state);
-//     formData.append("postalCode", updatedAddress.postalCode);
-//     formData.append("phone", updatedAddress.phone);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import profilePhoto from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
 import "./profile.css";
 import EditProfile from "../edit-profile/EditProfile";
+import img from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
 import {
   getUserInfoById,
   getUserPostsById,
@@ -17,7 +18,6 @@ const Profile = () => {
     lastName: "",
   });
 
-  
   const [error, setError] = useState(null);
   const [internet, setInternet] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ const Profile = () => {
       if (internet) {
         const data = await getUserPostsById(userId);
         setPosts(data.posts.reverse());
-        
+
         setError(null);
         setInternet(true);
         setIsLoading(false);
@@ -68,7 +68,6 @@ const Profile = () => {
   useEffect(() => {
     getUserPosts();
     getUserInfo();
-    
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -81,7 +80,7 @@ const Profile = () => {
     setIsOpen(false);
     console.log("modal closed");
   };
-  const path ='https://crashline.onrender.com/'
+  const path = "https://crashline.onrender.com/";
   return (
     <>
       <div className="container-fluid">
@@ -92,18 +91,22 @@ const Profile = () => {
                 <div className="col-3 centred">
                   <div className="">
                     <img
-                      className="profile-img rounded-circle "
-                      src={user.picture?(path+user.picture):(profilePhoto)}
+                      className="rounded-circle ms-5"
+                      src={path + user.picture }
                       alt="profilePhoto"
+                      width={140}
+                      height={140}
                     />
                   </div>
                 </div>
-                <div className="col-8  offset-1">
+                <div className="col-7  offset-2">
                   <div className="row ">
-                    <div className="col-sm-3 offset-1 col-8">
-                      <span className="t-color fw-bold">{user.firstName} {user.lastName}</span>
+                    <div className="col-sm-3 offset-1 col-12">
+                      <span className="t-color fw-bold">
+                        {user.firstName} {user.lastName}
+                      </span>
                     </div>
-                    <div className="col-sm-4 col-xs-4 col-10 ">
+                    <div className="col-sm-4 col-xs-4 col-12 ">
                       <button
                         className="btn one btn-dark bg-trash btn-sm w-100 p-0 "
                         style={{ backgroundColor: "#6936F5" }}
@@ -113,7 +116,7 @@ const Profile = () => {
                       </button>
                     </div>
                     <EditProfile isOpen={isOpen} onClose={closeModal} />
-                    <div className=" col-sm-4 col-xs-4 col-10 ">
+                    <div className=" col-sm-4 col-xs-4 col-12 ">
                       <button
                         className="btn one btn-dark btn-sm w-100 p-0 bg-trash"
                         style={{ backgroundColor: "#6936F5" }}
@@ -128,7 +131,7 @@ const Profile = () => {
                     </div>
                     <div className="col-4 t-color text-center">
                       <span>Followers 0</span>
-                    </div>
+                    </div>{" "}
                     <div className="col-4 t-color text-center">
                       <span>Following 0</span>
                     </div>
@@ -147,11 +150,15 @@ const Profile = () => {
                           key={post._id}
                           p={post}
                           user={user}
-                          getData={getUserPosts}
+                          getUserPosts={getUserPosts}
                         />
                       </div>
                     ))}
-                    <div className="mt-5">.</div>
+                    <div className="container mt-5">
+                      <div className="row">
+                        <div className="col"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

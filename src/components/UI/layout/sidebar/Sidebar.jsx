@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import "./sidebar.css";
-import homeIcon from "../../../../assets/assets/home-icon.png";
-import searchIcon from "../../../../assets/assets/search-icon.png";
 import reelsIcon from "../../../../assets/assets/reels-icon.png";
-import messagesIcon from "../../../../assets/assets/icons8-messenger-24.png";
-import notificationsIcon from "../../../../assets/assets/favorite-icon.png";
-import createPostIcon from "../../../../assets/assets/create-post icon.png";
-import profileIcon from "../../../../assets/assets/icons8-account-24.png";
 import { NavLink } from "react-router-dom";
 import CreatePost from "../../create-post/CreatePost";
 
@@ -29,15 +23,17 @@ const Sidebar = () => {
           <h3>Crashline</h3>
         </div>
         <ul className="list-unstyled components">
-          <li className="active h-100">
+          <li >
             <NavLink to={"/feed"}>
-              <img className="side-icon " src={homeIcon} alt="homeIcon" /> Home
+              <i className="bi bi-house me-1"/> 
+              Home
             </NavLink>
           </li>
           <li>
             <NavLink to={"/feed"}>
-              <img className="side-icon" src={searchIcon} alt="searchIcon" />
+              <i className="bi bi-search me-1" />
               Search
+              
             </NavLink>
           </li>
           <li>
@@ -48,38 +44,25 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to={"/feed"}>
-              <img
-                className="side-icon"
-                src={messagesIcon}
-                alt="messagesIcon"
-              />
-              Messages
+              <i className="bi bi-chat me-1" />
+                Messages
             </NavLink>
           </li>
           <li>
             <NavLink to={"/feed"}>
-              <img
-                className="side-icon"
-                src={notificationsIcon}
-                alt="notificationsIcon"
-              />
+              <i className="bi bi-heart me-1" />
               Notification
             </NavLink>
           </li>
           <li onClick={openModal}>
             <NavLink>
-              <img
-                className="side-icon"
-                src={createPostIcon}
-                alt="createPostIcon"
-              />
+              <i className="bi bi-plus-square me-1" />
               Create Post
             </NavLink>
           </li>
           <li>
             <NavLink to={"/profile"}>
-              <img className="side-icon" src={profileIcon} alt="profileIcon" />
-              Profile
+              <i className="bi bi-person fs me-1" /> Profile
             </NavLink>
           </li>
         </ul>

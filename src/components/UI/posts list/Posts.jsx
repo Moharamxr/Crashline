@@ -34,7 +34,7 @@ const Posts = () => {
   return (
     <>
       {posts.map((post) => (
-        <PostCard key={post._id} p={post} getData={getData}/>
+        <PostCard key={post._id} p={post}/>
       ))}
       {error && (
         <p className="text-center text-danger fw-bold mt-5">
@@ -52,8 +52,7 @@ const Posts = () => {
           </div>
         )}
 
-
-      <div className="mt-5 ">.</div>
+        <div className="container mt-5"><div className="row"><div className="col"></div></div></div>
     </>
   );
 };

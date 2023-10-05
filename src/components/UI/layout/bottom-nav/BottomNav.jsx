@@ -22,46 +22,32 @@ const BottomNav = () => {
     console.log('modal closed');
   };
   return (
-    <div className="wrapper">
+    <div className="wrapper ">
       <nav id="bottom-nav" className="mobile-only">
         <ul className="bottom-nav-list">
           <li className="active">
             <NavLink to={"/feed"}>
-              <img className="bottom-icon" src={homeIcon} alt="homeIcon" />
+            <i className="bi bi-house me-1"/>            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/feed"}>
+            <i className="bi bi-search me-1" />
             </NavLink>
           </li>
           <li>
             <NavLink to={"/feed"}>
-              <img className="bottom-icon" src={searchIcon} alt="searchIcon" />
+              <img className="side-icon" src={reelsIcon} alt="reelsIcon" />
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/feed"}>
-              <img className="bottom-icon" src={reelsIcon} alt="reelsIcon" />
-            </NavLink>
-          </li>
-          {/* <li>
-          <NavLink to={"/feed"}>
-            <img className="bottom-icon" src={messagesIcon} alt="messagesIcon" />
-          </NavLink>
-        </li> */}
-          {/* <li>
-          <NavLink to={"/feed"}>
-            <img className="bottom-icon" src={notificationsIcon} alt="notificationsIcon" />
-          </NavLink>
-        </li> */}
+          
           <li onClick={openModal}>
             <NavLink >
-              <img
-                className="bottom-icon"
-                src={createPostIcon}
-                alt="createPostIcon"
-              />
+            <i className="bi bi-plus-square me-1" />
             </NavLink>
           </li>
           <li>
             <NavLink to={"/profile"}>
-              <img className="side-icon" src={profileIcon} alt="profileIcon" />
+            <i className="bi bi-person fs me-1" />
             </NavLink>
           </li>
         </ul>

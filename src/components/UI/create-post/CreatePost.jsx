@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 const CreatePost = ({ isOpen, onClose }) => {
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState('new post');
-  const [content, setContent] = useState('');
+  const title = "new post";
+  const [content, setContent] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
@@ -19,14 +22,19 @@ const CreatePost = ({ isOpen, onClose }) => {
       image: image,
       content: content,
     };
-onClose();
+    setIsLoading(true);
     try {
-      await addPost(newData)
+      await addPost(newData);
+      onClose();
+      setIsLoading(false);
       
-      navigate('/feed')
+      navigate("/feed");
     } catch (error) {
+      setError(error);
+      setIsLoading(false);
       onClose();
     }
+    setIsLoading(false);
   };
   return (
     <>
@@ -52,23 +60,28 @@ onClose();
               ></button>
             </div>
             <div className="modal-body">
+              {error && <p className="text-center text-danger">{error}</p>}
               <div className="mb-3">
                 <div className="form-group">
                   <label className="form-label" htmlFor="img-inp">
                     add new photo here
                   </label>
-                  <input id="img-inp" className="form-control" type="file" 
-                  onChange={handleImageChange}/>
+                  <input
+                    id="img-inp"
+                    className="form-control"
+                    type="file"
+                    onChange={handleImageChange}
+                  />
                 </div>
 
-                <div className="form-floating">
+                <div className="form-floating mt-2">
                   <textarea
                     className="form-control "
                     name="textMessage"
                     placeholder="What would you like to say?"
                     id="textMessage"
                     rows="50"
-                    onChange={(e) => setContent(e.target.value)} 
+                    onChange={(e) => setContent(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
                     add description
@@ -83,7 +96,7 @@ onClose();
                 style={{ backgroundColor: "#6936F5" }}
                 onClick={handleAddPost}
               >
-                Create
+                {isLoading ? (<>Creating new post...</>):(<>Create</>)}
               </button>
               <button
                 type="button"
