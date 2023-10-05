@@ -142,10 +142,10 @@ const Profile = () => {
                 <div className="col-2 ms-2  "></div>
               </div>
               <div className="row centred">
-                <div className="col-12">
+                <div className="col-12 p-0">
                   <div className="row centred mb-2 pe-1 ps-1">
                     {posts.map((post) => (
-                      <div className="col-lg-4 ">
+                      <div className="col-lg-4 p-0">
                         <PostCard
                           key={post._id}
                           p={post}

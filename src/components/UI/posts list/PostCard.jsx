@@ -30,6 +30,10 @@ const handleDelete = async () => {
       
     }
 }; 
+const currentDate = new Date();
+const createdAtDate = new Date(post.createdAt);
+const oneDayMilliseconds = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+const daysAgo = Math.round((currentDate - createdAtDate) / oneDayMilliseconds)+1;
   return (
     <div className="card m-2 z-index-n2">
       <div className="row">
@@ -38,15 +42,15 @@ const handleDelete = async () => {
             className=" m-3 me-0 rounded-circle"
             src={user ? path + user.picture : path + post.creator.picture}
             alt="profileIcon"
-            width={70}
-            height={70}
+            width={40}
+            height={40}
           />
           <p className="fw-bold logo m-3 mt-4">
             {post.creator.firstName} {user && user.firstName}
             {post.creator.lastName}
             {user && user.lastName}
           </p>
-          {user && <p onClick={handleDelete} className="btn btn-danger del-btn">delete</p>}
+          {user && <i className="bi bi-trash3  del-btn"></i>}
         </div>
       </div>
 
@@ -76,6 +80,7 @@ const handleDelete = async () => {
             {post.content}
           </p>
           <p className="fw-light link-underline">view all comments</p>
+          <p>{daysAgo===0? (<>today</>):(<>{daysAgo} days ago</>)} </p>
         </div>
       </div>
     </div>

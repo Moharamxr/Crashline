@@ -33,26 +33,31 @@ const Posts = () => {
   }, []);
   return (
     <>
-      {posts.map((post) => (
-        <PostCard key={post._id} p={post}/>
-      ))}
       {error && (
         <p className="text-center text-danger fw-bold mt-5">
-          Something went wrong!!
+          Something went wrong..!!!
         </p>
       )}
       {!internet && (
         <p className="text-center text-danger fw-bold mt-5">Network Error</p>
       )}
-      {isLoading && (
-          <div className="d-flex justify-content-center align-items-center mt-5">
-            <div className="spinner-border logo" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
+      {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center mt-5">
+          <div className="spinner-border logo" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
-        )}
+        </div>
+      ) : posts.length === 0 ? (
+        <p className="centred logo">No posts yet!!</p>
+      ) : (
+        posts.map((post) => <PostCard key={post._id} p={post} />)
+      )}
 
-        <div className="container mt-5"><div className="row"><div className="col"></div></div></div>
+      <div className="">
+        <div className="row mt-5">
+          <div className="col"></div>
+        </div>
+      </div>
     </>
   );
 };
