@@ -12,7 +12,7 @@ const Feed = () => {
         </div>
       </div>
       <div className="row centred">
-        <div className="col-md-8 col-xl-5 offset-md-1">
+        <div className="col-sm-8 col-xl-5 offset-md-1 ">
           <Posts />
         </div>
       </div>

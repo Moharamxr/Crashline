@@ -124,7 +124,7 @@ export const addLike = async (id) => {
   try {
     console.log(id);
     const response = await axios.post(
-      `https://crashline.onrender.com/posts/like/${id}`,
+      `https://crashline.onrender.com/posts/${id}/like`,
       {},
       {
         headers: {
@@ -133,7 +133,7 @@ export const addLike = async (id) => {
         },
       }
     );
-    
+
     console.log(response.data.message);
     console.log(response.data);
     return response.data;
@@ -143,27 +143,33 @@ export const addLike = async (id) => {
     throw error;
   }
 };
-
 export const addComment = async (id, content) => {
-  console.log(id)
-  console.log(token)
+  console.log(id);
+  console.log(content);
+
+  const AuthToken = localStorage.getItem("AuthToken");
+  console.log(AuthToken);
+
   try {
     const response = await axios.post(
-      `https://crashline.onrender.com/posts/comment/${id}`,
-      content,
+      `https://crashline.onrender.com/posts/${id}/comment`,
+      {
+        content: content,
+      },
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${AuthToken}`,
         },
       }
     );
+
     console.log(response.data.message);
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
-    console.error(error.response.data.error);
+    console.error(error.response.data);
     throw error;
   }
 };

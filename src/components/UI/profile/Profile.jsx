@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import profilePhoto from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
+import profilePhoto from "../../../assets/profilePic.png";
 import "./profile.css";
 import EditProfile from "../edit-profile/EditProfile";
 import img from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
@@ -92,7 +92,7 @@ const Profile = () => {
                   <div className="">
                     <img
                       className="rounded-circle ms-5"
-                      src={path + user.picture}
+                      src={user.picture ?path + user.picture : profilePhoto}
                       alt="profilePhoto"
                       width={140}
                       height={140}
@@ -152,7 +152,7 @@ const Profile = () => {
                       </div>
                     )}
                     {posts.map((post) => (
-                      <div className="col-lg-4 p-0">
+                      <div className="col-lg-4 p-1 ">
                         <PostCard
                           key={post._id}
                           p={post}

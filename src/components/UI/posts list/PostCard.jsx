@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import img from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
 import {
   addComment,
   addLike,
@@ -36,7 +35,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
       setShowComments(!showComments);
       try {
         const data = await getPostById(post._id);
-        setPostComments(data.post.comments);
+        setPostComments(data.post.comments.reverse());
       } catch (error) {}
     }
   };
@@ -50,6 +49,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
     setOpenComment(!openComment);
     setToggleComment(!toggleComment);
   };
+  
   const handleComment = async () => {
     try {
       setIsLoadingComment(true);
@@ -59,6 +59,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
     } catch (error) {}
     setIsLoadingComment(false);
     setOpenComment(false);
+    setToggleComment(!toggleComment);
   };
 
   const currentDate = new Date();

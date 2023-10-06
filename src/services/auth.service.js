@@ -14,10 +14,14 @@ export const login = async (loginData) => {
     localStorage.setItem("userData", JSON.stringify(loginData));
     localStorage.setItem("LoginErrorMessage", "");
     localStorage.setItem("userId",response.data.user._id );
+    localStorage.setItem("AuthToken", response.data.token)
 
     console.log(response);
     const token = response.data.token;
     document.cookie = `token=${token}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;
+
+    console.log(token)
+    console.log(localStorage.getItem("AuthToken"));
     return response.data;
   } catch (error) {
     console.log(error.response.data.error);
