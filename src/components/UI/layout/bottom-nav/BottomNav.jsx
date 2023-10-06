@@ -36,7 +36,7 @@ const BottomNav = () => {
           </li>
           <li>
             <NavLink to={"/feed"}>
-              <img className="side-icon" src={reelsIcon} alt="reelsIcon" />
+              <img className="bott-icon" src={reelsIcon} alt="reelsIcon" />
             </NavLink>
           </li>
           

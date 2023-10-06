@@ -7,6 +7,7 @@ const TopBar = () => {
   const navigate = useNavigate();
   const handleSignOut = () => {
     localStorage.setItem('token','');
+    localStorage.setItem("isLoggedIn", "false");
     navigate('/login');
   };
   return (

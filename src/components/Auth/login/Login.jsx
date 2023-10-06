@@ -10,6 +10,7 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   const initialValues = {
     email: "",
     password: "",
@@ -43,6 +44,7 @@ const Login = () => {
   };
 
   return (
+    
     <div className="form-margin  w-100 d-flex flex-column justify-content-center align-items-center ">
       <Formik
         initialValues={initialValues}
