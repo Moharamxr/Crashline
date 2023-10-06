@@ -6,7 +6,6 @@ import {
   deletePost,
   getPostById,
 } from "../../../services/posts.service";
-import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ p, user, getUserPosts }) => {
   const path = "https://crashline.onrender.com/";
@@ -19,7 +18,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
-  const navigate = useNavigate();
 
   const handleLike = async () => {
     setIsLiked(!isLiked);
