@@ -11,8 +11,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const initialValues = {
-    email: "admin@test.com",
-    password: "Admin123",
+    email: "",
+    password: "",
   };
 
   const validationSchema = Yup.object().shape({
