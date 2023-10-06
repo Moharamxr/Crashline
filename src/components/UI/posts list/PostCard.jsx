@@ -119,7 +119,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
 
             {post.content}
           </p>
-          {post.commentsCount>0&&<p className="fw-light link-underline" onClick={getComments}>
+          {post.commentsCount>0 &&<p className="fw-light link-underline" onClick={getComments}>
             view all comments {post.commentsCount}
           </p>}
           <div
