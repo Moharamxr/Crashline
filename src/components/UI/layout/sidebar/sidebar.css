@@ -36,9 +36,9 @@
 }
 
 #sidebar ul li a {
-    padding: 14%;
+    padding: 13%;
     
-    font-size: 1.1em;
+    font-size: 1.2em;
     display: block;
     text-decoration: none;
     color: #6936F5;
@@ -52,8 +52,8 @@
 }
 
 .side-icon {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     margin-right: 3px;
     margin-left: 0px;
 }
@@ -110,5 +110,6 @@
 }
 .bi{
     color: #6936F5;
-    font-size: large;
+    font-size: x-large;
+    
 }

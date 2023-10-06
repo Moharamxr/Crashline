@@ -89,7 +89,7 @@ const Register = () => {
               <div className="dv1 mt-2">
                 <Field
                   type="text"
-                  id="email"
+                  id="registerEmail"
                   name="email"
                   placeholder="Email"
                   className="p-1 mt-2 w-75"
@@ -103,7 +103,7 @@ const Register = () => {
               <div className="dv1 mt-2">
                 <Field
                   type="password"
-                  id="password"
+                  id="registerPassword"
                   name="password"
                   placeholder="Password"
                   className="p-1 mt-2 w-75"

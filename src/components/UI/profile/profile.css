@@ -32,11 +32,11 @@ color:#6936F5 ;
     height: 100%;
 }
 .del-btn{
-    margin: 20px 8px 0px 20%;
+    
     height: 40px;
     width: max-content;
 }
 .post-name{
-    margin: 10px 10% 0px 0px;
-    color: #6936F5;
+    color: #6936F5; 
+    margin-left: 5px;
 }

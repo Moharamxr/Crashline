@@ -12,7 +12,6 @@ for (let i = 0; i < cookies.length; i++) {
 
 export const getUserPostsById = async (id) => {
   try {
-    console.log(token);
     console.log(id)
     const response = await axios.get(
       `https://crashline.onrender.com/profile/${id}`,
@@ -35,7 +34,6 @@ export const getUserPostsById = async (id) => {
 };
 export const getUserInfoById = async (id) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/user/${id}`,
 
@@ -57,7 +55,6 @@ export const getUserInfoById = async (id) => {
 };
 export const updateUserPicture = async (id, image) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/picture/${id}`,
       image,
@@ -79,7 +76,6 @@ export const updateUserPicture = async (id, image) => {
 };
 export const deleteProfilePicture = async (id) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/picture/${id}`,
 
@@ -101,7 +97,6 @@ export const deleteProfilePicture = async (id) => {
 };
 export const updatePassword = async (id, oldPass, newPass) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/${id}`,
 
@@ -127,7 +122,6 @@ export const updatePassword = async (id, oldPass, newPass) => {
 };
 export const updateName = async (id, firstName, lastName) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/${id}`,
 

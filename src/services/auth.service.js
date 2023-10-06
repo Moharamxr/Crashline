@@ -17,7 +17,6 @@ export const login = async (loginData) => {
 
     console.log(response);
     const token = response.data.token;
-    console.log(token);
     document.cookie = `token=${token}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;
     return response.data;
   } catch (error) {

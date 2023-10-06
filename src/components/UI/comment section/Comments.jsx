@@ -1,24 +1,49 @@
-import React, { useState } from "react";
-// import img from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
+import React, { useEffect, useState } from "react";
 import {
   addComment,
   addLike,
-  deletePost,
   getPostById,
 } from "../../../services/posts.service";
-import { useNavigate } from "react-router-dom";
-
-const PostCard = ({ p, user, getUserPosts }) => {
+import { useNavigate, useParams } from "react-router-dom";
+const Comments = () => {
   const path = "https://crashline.onrender.com/";
-  const post = p;
+  const [post, setPost] = useState({
+    commentsCount: null,
+    content: "",
+    createdAt: "",
+    creator: "",
+    image: null,
+    isLiked: false,
+    likesCount: null,
+    title: "",
+    _id: "",
+  });
+  const { id } = useParams();
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [openComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(false);
   const [isLoadingComment, setIsLoadingComment] = useState(false);
-  const [postComments, setPostComments] = useState([]);
-  const [showComments, setShowComments] = useState(false);
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+  const getData = async () => {
+    try {
+    //   setIsLoading(true);
+      const data = await getPostById(id);
+      setPost(data.post);
+     
+    } catch (error) {
+    //   setError(error.message);
+    //   setIsLoading(false);
+      throw error;
+    }
+    // setIsLoading(false);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleLike = async () => {
     setIsLiked(!isLiked);
@@ -32,24 +57,11 @@ const PostCard = ({ p, user, getUserPosts }) => {
       await addLike(post._id);
     } catch (error) {}
   };
-  const getComments = async () => {
-    if (post.commentsCount > 0) {
-      setShowComments(!showComments);
-      try {
-        const data = await getPostById(post._id);
-        setPostComments(data.post.comments);
-      } catch (error) {}
-    }
-  };
-  const handleDelete = async () => {
-    try {
-      await deletePost(post._id);
-      getUserPosts();
-    } catch (error) {}
-  };
+
   const openCommentSection = () => {
     setOpenComment(!openComment);
   };
+
   const handleComment = async () => {
     try {
       setIsLoadingComment(true);
@@ -78,17 +90,13 @@ const PostCard = ({ p, user, getUserPosts }) => {
             width={40}
             height={40}
           />
-          <p className="fw-bold logo post-name  mt-4">
+          <p className="fw-bold logo m-3 mt-4">
             {post.creator.firstName} {user && user.firstName}
             {post.creator.lastName}
             {user && user.lastName}
           </p>
         </div>
-        <div className="col-2 offset-2 mt-4">
-          {user && (
-            <i onClick={handleDelete} className="bi bi-trash3  del-btn"></i>
-          )}
-        </div>
+        
       </div>
 
       <img
@@ -100,14 +108,11 @@ const PostCard = ({ p, user, getUserPosts }) => {
       />
       <div className="card-body">
         <i
-          className={`bi bi-heart${isLiked ? `-fill` : ``} me-2 post-icons`}
+          className={`bi bi-heart${isLiked ? `-fill` : ``} me-2 `}
           onClick={handleLike}
         />
-        <i
-          className="bi bi-chat-left-dots post-icons"
-          onClick={openCommentSection}
-        />
-        <i className="bi bi-send ms-2 post-icons" />
+        <i className="bi bi-chat-left-dots " onClick={openCommentSection} />
+        <i className="bi bi-send ms-2" />
         <div className="card-text logo ps-1">
           <p className="">{likesCount} likes</p>
           <p className="text-dark">
@@ -119,26 +124,27 @@ const PostCard = ({ p, user, getUserPosts }) => {
 
             {post.content}
           </p>
-          {post.commentsCount>0&&<p className="fw-light link-underline" onClick={getComments}>
-            view all comments {post.commentsCount}
-          </p>}
-          <div
-            className={`container-fluid ${openComment ? "d-block" : "d-none"}`}
+          <p
+            className="fw-light link-underline"
+            onClick={() => navigate(`details/${post._id}`)}
           >
+            view all comments
+          </p>
+          <div className={`container ${openComment ? "d-block" : "d-none"}`}>
             <div className="row ">
-              <div className={`form-floating col-8 p-0 ms-0`}>
+              <div className={`form-floating col-10 p-0 ms-0`}>
                 <input
                   type="text"
                   name="comment"
-                  id={post._id}
+                  id="commentInput"
                   className={`form-control `}
                   onChange={(e) => setComment(e.target.value)}
                 />
-                <label htmlFor={post._id}>add a comment</label>
+                <label htmlFor="commentInput">add a comment</label>
               </div>
               <button
                 onClick={handleComment}
-                className="btn btn-dark col-3 p-0 m-0 "
+                className="btn btn-dark col-2 p-0 m-0 "
                 style={{ backgroundColor: "#6936F5" }}
               >
                 {isLoadingComment ? <>Commenting</> : <>comment</>}
@@ -147,17 +153,10 @@ const PostCard = ({ p, user, getUserPosts }) => {
           </div>
 
           <p>{daysAgo === 0 ? <>today</> : <>{daysAgo} days ago</>} </p>
-          {showComments &&
-            postComments.map((comment) => (
-              <p key={comment._id}>
-                {comment.creator.firstName} {comment.creator.lastName} :{" "}
-                {comment.content}
-              </p>
-            ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default PostCard;
+export default Comments;

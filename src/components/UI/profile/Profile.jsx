@@ -38,7 +38,7 @@ const Profile = () => {
         setInternet(false);
         setIsLoading(true);
       } else {
-        setError(error.response.data.message);
+        setError(error.message);
       }
       throw error;
     }
@@ -92,7 +92,7 @@ const Profile = () => {
                   <div className="">
                     <img
                       className="rounded-circle ms-5"
-                      src={path + user.picture }
+                      src={path + user.picture}
                       alt="profilePhoto"
                       width={140}
                       height={140}
@@ -144,6 +144,13 @@ const Profile = () => {
               <div className="row centred">
                 <div className="col-12 p-0">
                   <div className="row centred mb-2 pe-1 ps-1">
+                    {isLoading && (
+                      <div className="d-flex justify-content-center align-items-center mt-5">
+                        <div className="spinner-border logo" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                    )}
                     {posts.map((post) => (
                       <div className="col-lg-4 p-0">
                         <PostCard

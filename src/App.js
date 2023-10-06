@@ -7,6 +7,7 @@ import Feed from "./components/UI/feed/Feed";
 import Profile from "./components/UI/profile/Profile";
 import Layout from "./components/UI/layout/Layout";
 import Posts from "./components/UI/posts list/Posts";
+import Comments from "./components/UI/comment section/Comments";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/feed" element={<Feed />} />
         <Route path="/feed">
           <Route index element={<Feed />} />
-          <Route path="details/:id" element={<Posts />} />
+          <Route path="details/:id" element={<Comments />} />
         </Route>
         <Route path="/profile" element={<Profile />} />
         <Route path="/createPost" element={<Feed />} />

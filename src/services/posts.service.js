@@ -11,7 +11,6 @@ for (let i = 0; i < cookies.length; i++) {
 }
 export const getPosts = async () => {
   try {
-    console.log(token);
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
 
@@ -33,7 +32,6 @@ export const getPosts = async () => {
 };
 export const getPostById = async (id) => {
   try {
-    console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -56,7 +54,6 @@ export const getPostById = async (id) => {
 
 export const addPost = async (newPostData) => {
   try {
-    console.log(token);
     console.log(newPostData.image);
     const formData = new FormData();
     formData.append("title", newPostData.title);
@@ -67,12 +64,12 @@ export const addPost = async (newPostData) => {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data", 
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    console.log("Post added successfully");
+    console.log(response.data.message);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -83,7 +80,6 @@ export const addPost = async (newPostData) => {
 };
 export const updatePost = async (id, formData) => {
   try {
-    console.log(token);
     const response = await axios.put(
       `https://crashline.onrender.com/posts/${id}`,
       formData,
@@ -94,7 +90,7 @@ export const updatePost = async (id, formData) => {
         },
       }
     );
-    console.log("Post updated successfully");
+    console.log(response.data.message);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -105,7 +101,6 @@ export const updatePost = async (id, formData) => {
 };
 export const deletePost = async (id) => {
   try {
-    console.log(token);
     const response = await axios.delete(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -116,7 +111,7 @@ export const deletePost = async (id) => {
         },
       }
     );
-    console.log("Post deleted successfully");
+    console.log(response.data.message);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -127,10 +122,10 @@ export const deletePost = async (id) => {
 };
 export const addLike = async (id) => {
   try {
-    console.log(token);
     console.log(id);
     const response = await axios.post(
-      `https://crashline.onrender.com/posts/like/${id}`,{},
+      `https://crashline.onrender.com/posts/like/${id}`,
+      {},
       {
         headers: {
           "Content-Type": "application/json",
@@ -138,7 +133,8 @@ export const addLike = async (id) => {
         },
       }
     );
-    console.log("Post Liked successfully");
+    
+    console.log(response.data.message);
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -147,9 +143,11 @@ export const addLike = async (id) => {
     throw error;
   }
 };
+
 export const addComment = async (id, content) => {
+  console.log(id)
+  console.log(token)
   try {
-    console.log(token);
     const response = await axios.post(
       `https://crashline.onrender.com/posts/comment/${id}`,
       content,
@@ -160,8 +158,8 @@ export const addComment = async (id, content) => {
         },
       }
     );
-    console.log("Comment added successfully");
-    console.log(response.data);
+    console.log(response.data.message);
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error(error);
@@ -169,5 +167,3 @@ export const addComment = async (id, content) => {
     throw error;
   }
 };
-
-

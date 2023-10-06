@@ -75,12 +75,12 @@ const CreatePost = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="form-floating mt-2">
-                  <textarea
+                  <input
+                  type="text"
                     className="form-control "
                     name="textMessage"
                     placeholder="What would you like to say?"
                     id="textMessage"
-                    rows="50"
                     onChange={(e) => setContent(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
