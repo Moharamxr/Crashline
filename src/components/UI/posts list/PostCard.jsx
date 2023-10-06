@@ -18,6 +18,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [isLoadingComment, setIsLoadingComment] = useState(false);
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
+  const [toggleComment, setToggleComment] = useState(false);
   const navigate = useNavigate();
 
   const handleLike = async () => {
@@ -49,6 +50,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   };
   const openCommentSection = () => {
     setOpenComment(!openComment);
+    setToggleComment(!toggleComment);
   };
   const handleComment = async () => {
     try {
@@ -104,7 +106,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
           onClick={handleLike}
         />
         <i
-          className="bi bi-chat-left-dots post-icons"
+          className={`bi bi-chat-left-dots${toggleComment ? `-fill` : ``} post-icons`}
           onClick={openCommentSection}
         />
         <i className="bi bi-send ms-2 post-icons" />
@@ -119,6 +121,8 @@ const PostCard = ({ p, user, getUserPosts }) => {
 
             {post.content}
           </p>
+          <p>{daysAgo === 0 ? <>today</> : <>{daysAgo} days ago</>} </p>
+
           {post.commentsCount>0 &&<p className="fw-light link-underline" onClick={getComments}>
             view all comments {post.commentsCount}
           </p>}
@@ -146,7 +150,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
             </div>
           </div>
 
-          <p>{daysAgo === 0 ? <>today</> : <>{daysAgo} days ago</>} </p>
           {showComments &&
             postComments.map((comment) => (
               <p key={comment._id}>
