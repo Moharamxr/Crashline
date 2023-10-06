@@ -1,16 +1,19 @@
 import axios from "axios";
 
-const cookies = document.cookie.split("; ");
-let token = "";
-for (let i = 0; i < cookies.length; i++) {
-  const cookie = cookies[i].split("=");
-  if (cookie[0] === "token") {
-    token = cookie[1];
-    break;
-  }
-}
+// const cookies = document.cookie.split("; ");
+// let token = "";
+// for (let i = 0; i < cookies.length; i++) {
+//   const cookie = cookies[i].split("=");
+//   if (cookie[0] === "token") {
+//     token = cookie[1];
+//     break;
+//   }
+// }
 export const getPosts = async () => {
   try {
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
 
@@ -32,6 +35,9 @@ export const getPosts = async () => {
 };
 export const getPostById = async (id) => {
   try {
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     const response = await axios.get(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -54,6 +60,9 @@ export const getPostById = async (id) => {
 
 export const addPost = async (newPostData) => {
   try {
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     console.log(newPostData.image);
     const formData = new FormData();
     formData.append("title", newPostData.title);
@@ -80,6 +89,9 @@ export const addPost = async (newPostData) => {
 };
 export const updatePost = async (id, formData) => {
   try {
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     const response = await axios.put(
       `https://crashline.onrender.com/posts/${id}`,
       formData,
@@ -101,6 +113,9 @@ export const updatePost = async (id, formData) => {
 };
 export const deletePost = async (id) => {
   try {
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     const response = await axios.delete(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -123,6 +138,9 @@ export const deletePost = async (id) => {
 export const addLike = async (id) => {
   try {
     console.log(id);
+    
+  const token = localStorage.getItem("token");
+  console.log(token);
     const response = await axios.post(
       `https://crashline.onrender.com/posts/${id}/like`,
       {},
@@ -147,8 +165,8 @@ export const addComment = async (id, content) => {
   console.log(id);
   console.log(content);
 
-  const AuthToken = localStorage.getItem("AuthToken");
-  console.log(AuthToken);
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   try {
     const response = await axios.post(
@@ -159,7 +177,7 @@ export const addComment = async (id, content) => {
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${AuthToken}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

@@ -14,6 +14,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [openComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState("");
   const [isLoadingComment, setIsLoadingComment] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
@@ -26,30 +27,26 @@ const PostCard = ({ p, user, getUserPosts }) => {
       setLikesCount(likesCount - 1);
     }
 
-    try {
-      await addLike(post._id);
-    } catch (error) {}
+    await addLike(post._id);
   };
   const getComments = async () => {
-    if (post.commentsCount > 0) {
-      setShowComments(!showComments);
-      try {
-        const data = await getPostById(post._id);
-        setPostComments(data.post.comments.reverse());
-      } catch (error) {}
+    setShowComments(!showComments);
+    if (post.commentsCount > 0 && !showComments) {
+      const data = await getPostById(post._id);
+      setPostComments(data.post.comments.reverse());
     }
   };
   const handleDelete = async () => {
-    try {
-      await deletePost(post._id);
-      getUserPosts();
-    } catch (error) {}
+    setIsDeleting(true);
+    await deletePost(post._id);
+    getUserPosts();
+    setIsDeleting(false);
   };
   const openCommentSection = () => {
     setOpenComment(!openComment);
     setToggleComment(!toggleComment);
   };
-  
+
   const handleComment = async () => {
     try {
       setIsLoadingComment(true);
@@ -86,9 +83,14 @@ const PostCard = ({ p, user, getUserPosts }) => {
           </p>
         </div>
         <div className="col-2 offset-2 mt-4">
-          {user && (
-            <i onClick={handleDelete} className="bi bi-trash3  del-btn"></i>
-          )}
+          {user &&
+            (!isDeleting ? (
+              <i onClick={handleDelete} className="bi bi-trash3  del-btn" />
+            ) : (
+              <div class="spinner-border spinner-border-sm logo" role="status">
+                <span class="sr-only"></span>
+              </div>
+            ))}
         </div>
       </div>
 
@@ -105,7 +107,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
           onClick={handleLike}
         />
         <i
-          className={`bi bi-chat-left-dots${toggleComment ? `-fill` : ``} post-icons`}
+          className={`bi bi-chat-left-dots${
+            toggleComment ? `-fill` : ``
+          } post-icons`}
           onClick={openCommentSection}
         />
         <i className="bi bi-send ms-2 post-icons" />
@@ -122,9 +126,17 @@ const PostCard = ({ p, user, getUserPosts }) => {
           </p>
           <p>{daysAgo === 0 ? <>today</> : <>{daysAgo} days ago</>} </p>
 
-          {post.commentsCount>0 &&<p className="fw-light link-underline" onClick={getComments}>
-            view all comments {post.commentsCount}
-          </p>}
+          {post.commentsCount > 0 ? (
+            <p className="fw-light link-underline" onClick={getComments}>
+              view all comments {post.commentsCount}
+            </p>
+          ) : (
+            <div className="">
+              <div className="row mt-5 p-1">
+                <div className="col"></div>
+              </div>
+            </div>
+          )}
           <div
             className={`container-fluid ${openComment ? "d-block" : "d-none"}`}
           >

@@ -1,8 +1,14 @@
 import React from "react";
 import notificationIcon from "../../../../assets/assets/favorite-icon.png";
 import chatIcon from "../../../../assets/assets/icons8-messenger-24.png";
+import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
+  const navigate = useNavigate();
+  const handleSignOut = () => {
+    localStorage.setItem('token','');
+    navigate('/login');
+  };
   return (
     <nav id="top-nav">
       <div className="container-fluid p-2">
@@ -14,8 +20,8 @@ const TopBar = () => {
           <i className="bi bi-heart side-icon" />
 
           </div>
-          <div className="col-1  me-0">
-          <i className="bi bi-chat side-icon" />
+          <div className="col-1  pt-0  me-0">
+          <i className="bi bi-box-arrow-right post-icons" onClick={handleSignOut} />
           </div>
         </div>
       </div>

@@ -28,15 +28,12 @@ const Profile = () => {
       if (internet) {
         const data = await getUserPostsById(userId);
         setPosts(data.posts.reverse());
-
         setError(null);
         setInternet(true);
-        setIsLoading(false);
       }
     } catch (error) {
       if (error.message === "Network Error") {
         setInternet(false);
-        setIsLoading(true);
       } else {
         setError(error.message);
       }
@@ -152,7 +149,7 @@ const Profile = () => {
                       </div>
                     )}
                     {posts.map((post) => (
-                      <div className="col-lg-4 p-1 ">
+                      <div className="col-xl-4 col-md-5 p-1 ">
                         <PostCard
                           key={post._id}
                           p={post}

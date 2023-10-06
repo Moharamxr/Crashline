@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./sidebar.css";
 import reelsIcon from "../../../../assets/assets/reels-icon.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import CreatePost from "../../create-post/CreatePost";
 
 const Sidebar = () => {
@@ -15,6 +15,11 @@ const Sidebar = () => {
   const closeModal = () => {
     setIsOpen(false);
     console.log("modal closed");
+  };
+  const navigate = useNavigate();
+  const handleSignOut = () => {
+    localStorage.setItem('token','');
+    navigate('/login');
   };
   return (
     <div className="wrapper">
@@ -63,6 +68,11 @@ const Sidebar = () => {
           <li>
             <NavLink to={"/profile"}>
               <i className="bi bi-person fs me-1" /> Profile
+            </NavLink>
+          </li>
+          <li  onClick={handleSignOut}>
+            <NavLink to={"/login"}>
+            <i className="bi bi-box-arrow-right post-icons me-1" />Sign out
             </NavLink>
           </li>
         </ul>
