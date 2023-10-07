@@ -12,8 +12,8 @@ const Login = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const initialValues = {
-    email: "",
-    password: "",
+    email: "admin@test.com",
+    password: "Admin123",
   };
 
   const validationSchema = Yup.object().shape({

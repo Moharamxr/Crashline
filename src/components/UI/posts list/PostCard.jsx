@@ -53,6 +53,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
       console.log(comment);
       await addComment(post._id, comment);
       openCommentSection(false);
+      getComments();
     } catch (error) {}
     setIsLoadingComment(false);
     setOpenComment(false);
@@ -126,17 +127,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
           </p>
           <p>{daysAgo === 0 ? <>today</> : <>{daysAgo} days ago</>} </p>
 
-          {post.commentsCount > 0 ? (
-            <p className="fw-light link-underline" onClick={getComments}>
-              view all comments {post.commentsCount}
-            </p>
-          ) : (
-            <div className="">
-              <div className="row mt-5 p-1">
-                <div className="col"></div>
-              </div>
-            </div>
-          )}
           <div
             className={`container-fluid ${openComment ? "d-block" : "d-none"}`}
           >
@@ -160,7 +150,17 @@ const PostCard = ({ p, user, getUserPosts }) => {
               </button>
             </div>
           </div>
-
+          {post.commentsCount > 0 ? (
+            <p className="fw-light link-underline" onClick={getComments}>
+              view all comments {post.commentsCount}
+            </p>
+          ) : (
+            <div className="">
+              <div className="row mt-5 p-1">
+                <div className="col"></div>
+              </div>
+            </div>
+          )}
           {showComments &&
             postComments.map((comment) => (
               <p key={comment._id}>

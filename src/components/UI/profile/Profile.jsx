@@ -112,7 +112,7 @@ const Profile = () => {
                         Edit profile
                       </button>
                     </div>
-                    <EditProfile isOpen={isOpen} onClose={closeModal} />
+                    <EditProfile isOpen={isOpen} onClose={closeModal} getUserInfo={getUserInfo} />
                     <div className=" col-sm-4 col-xs-4 col-12 ">
                       <button
                         className="btn one btn-dark btn-sm w-100 p-0 bg-trash"

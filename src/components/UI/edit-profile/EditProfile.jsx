@@ -1,12 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import { updateName, updateUserPicture } from "../../../services/user.service";
 
-const EditProfile = ({ isOpen, onClose }) => {
-    
+const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
+  const [image, setImage] = useState(null);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [imageError, setImageError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+  const isValid = lastName !== "" && firstName !== "" && image;
+
+  const userId = localStorage.getItem("userId");
+  const handleUpdateUserInfo = async () => {
+    const newData = {
+      firstName: firstName,
+      lastName: lastName,
+      image: image,
+    };
+    if (isValid) {
+      setIsLoading(true);
+      try {
+        await updateUserPicture(userId, newData.image);
+        setImageError("");
+        
+        onClose();
+        setIsLoading(false);
+      } catch (error) {
+        setImageError(error);
+        setIsLoading(false);
+      }
+      try {
+        await updateName(userId, newData.firstName, newData.lastName);
+        setNameError("");
+        setIsLoading(false);
+        getUserInfo();
+      } catch (error) {
+        setNameError(error);
+        setIsLoading(false);
+      }
+
+      setIsLoading(false);
+    } else {
+      setImage("image or title not found");
+      setNameError("");
+    }
+  };
   return (
     <>
-      {isOpen && (
-        <div className="modal-backdrop show z-3"></div>
-      )}
+      {isOpen && <div className="modal-backdrop show w-100 h-100 z-3"></div>}
       <div
         key="createPostModal"
         className={`modal fade${isOpen ? " show d-block" : ""}`}
@@ -28,40 +74,65 @@ const EditProfile = ({ isOpen, onClose }) => {
               ></button>
             </div>
             <div className="modal-body">
+              {imageError && (
+                <p className="text-center text-danger">
+                  image {imageError.response.data.error}
+                </p>
+              )}
+              {nameError && (
+                <p className="text-center text-danger">
+                  Firstname or Lastname{nameError.response.data.error}
+                </p>
+              )}
               <div className="mb-3">
                 <div className="form-group">
-                  <label className="form-label" htmlFor="img-inp">Add new profile photo</label>
-                  <input id="img-inp" className="form-control" type="file" />
+                  <label className="form-label" htmlFor="img-inp">
+                    Add new profile photo
+                  </label>
+                  <input
+                    id="img-edit"
+                    className="form-control"
+                    type="file"
+                    onChange={handleImageChange}
+                  />
                 </div>
 
                 <div className="form-floating">
-                  
                   <input
                     className="form-control mt-1"
                     type="text"
-                    name="textMessage"
+                    name="setFirstName"
                     placeholder="What would you like to say?"
-                    id="textMessage"
-                    rows="50"
-                  /><label className="form-label" htmlFor="textMessage">update firstname</label>
+                    id="setFirstName"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                  <label className="form-label" htmlFor="textMessage">
+                    update firstname
+                  </label>
                 </div>
                 <div className="form-floating">
-                  
                   <input
                     className="form-control mt-1"
-                    name="textMessage"
+                    name="setLastName"
                     type="text"
                     placeholder="What would you like to say?"
-                    id="textMessage"
-                    rows="50"
-                  /><label className="form-label" htmlFor="textMessage">update lastname</label>
+                    id="setLastName"
+                    onChange={(e) => setLastName(e.target.value)}
+                  />
+                  <label className="form-label" htmlFor="textMessage">
+                    update lastname
+                  </label>
                 </div>
               </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn text-light"
-              style={{ backgroundColor: "#6936F5" }}>
-                Update
+              <button
+                type="button"
+                className="btn text-light"
+                style={{ backgroundColor: "#6936F5" }}
+                onClick={handleUpdateUserInfo}
+              >
+                {isLoading ? <>Updating new data...</> : <>Update</>}
               </button>
               <button
                 type="button"

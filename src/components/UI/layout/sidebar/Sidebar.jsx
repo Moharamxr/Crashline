@@ -6,17 +6,18 @@ import CreatePost from "../../create-post/CreatePost";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate()
   const openModal = () => {
     setIsOpen(true);
     console.log("modal opened");
+    navigate('/profile')
   };
 
   const closeModal = () => {
     setIsOpen(false);
     console.log("modal closed");
   };
-  const navigate = useNavigate();
+  
   const handleSignOut = () => {
     localStorage.setItem('token','');
     localStorage.setItem("isLoggedIn", "false");

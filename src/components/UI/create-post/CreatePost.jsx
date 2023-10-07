@@ -22,23 +22,29 @@ const CreatePost = ({ isOpen, onClose }) => {
       image: image,
       content: content,
     };
-    setIsLoading(true);
-    try {
-      await addPost(newData);
-      onClose();
+    if (content !== "" && image) {
+      setError('')
+      setIsLoading(true);
+      try {
+        await addPost(newData);
+        setError('')
+        setContent('')
+        setImage(null)
+        onClose();
+        setIsLoading(false);
+        navigate("/feed");
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
       setIsLoading(false);
-      
-      navigate("/feed");
-    } catch (error) {
-      setError(error);
-      setIsLoading(false);
-      onClose();
+    }else{
+      setError("image or title not found");
     }
-    setIsLoading(false);
   };
   return (
     <>
-      {isOpen && <div className="modal-backdrop show z-3"></div>}
+      {isOpen && <div className="modal-backdrop show z-3 w-100 h-100"></div>}
       <div
         key="createPostModal"
         className={`modal fade${isOpen ? " show d-block" : ""}`}
@@ -76,7 +82,7 @@ const CreatePost = ({ isOpen, onClose }) => {
 
                 <div className="form-floating mt-2">
                   <input
-                  type="text"
+                    type="text"
                     className="form-control "
                     name="textMessage"
                     placeholder="What would you like to say?"
@@ -96,7 +102,7 @@ const CreatePost = ({ isOpen, onClose }) => {
                 style={{ backgroundColor: "#6936F5" }}
                 onClick={handleAddPost}
               >
-                {isLoading ? (<>Creating new post...</>):(<>Create</>)}
+                {isLoading ? <>Creating new post...</> : <>Create</>}
               </button>
               <button
                 type="button"
