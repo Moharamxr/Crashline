@@ -155,11 +155,14 @@ const PostCard = ({ p, user, getUserPosts }) => {
               view all comments {post.commentsCount}
             </p>
           ) : (
-            <div className="">
-              <div className="row mt-5 p-1">
-                <div className="col"></div>
-              </div>
-            </div>
+            // <div className="">
+            //   <div className="row mt-5 p-1">
+            //     <div className="col"></div>
+            //   </div>
+            // </div>
+            <p className="fw-light link-underline">
+              No comments yet
+            </p>
           )}
           {showComments &&
             postComments.map((comment) => (
