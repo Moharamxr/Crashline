@@ -22,7 +22,10 @@ const Posts = () => {
     setIsLoading(false);
   };
   useEffect(() => {
+    console.log("Effect running");
     getData();
+    console.log("Effect Effect ended");
+
   }, []);
   return (
     <>

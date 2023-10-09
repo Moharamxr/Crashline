@@ -40,8 +40,9 @@ export const register = async (registerData) => {
         },
       }
     );
-    console.log("Registration successful");
     localStorage.setItem("RegisterErrorMessage", "");
+    console.log("Registration successful");
+    
     return response.data;
   } catch (error) {
     console.error(error);

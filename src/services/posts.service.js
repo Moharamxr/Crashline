@@ -13,7 +13,7 @@ export const getPosts = async () => {
   try {
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
 
@@ -37,7 +37,7 @@ export const getPostById = async (id) => {
   try {
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     const response = await axios.get(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -62,7 +62,7 @@ export const addPost = async (newPostData) => {
   try {
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     console.log(newPostData.image);
     const formData = new FormData();
     formData.append("title", newPostData.title);
@@ -91,7 +91,7 @@ export const updatePost = async (id, formData) => {
   try {
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     const response = await axios.put(
       `https://crashline.onrender.com/posts/${id}`,
       formData,
@@ -115,7 +115,7 @@ export const deletePost = async (id) => {
   try {
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     const response = await axios.delete(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -140,7 +140,7 @@ export const addLike = async (id) => {
     console.log(id);
     
   const token = localStorage.getItem("token");
-  console.log(token);
+  
     const response = await axios.post(
       `https://crashline.onrender.com/posts/${id}/like`,
       {},
@@ -166,7 +166,7 @@ export const addComment = async (id, content) => {
   console.log(content);
 
   const token = localStorage.getItem("token");
-  console.log(token);
+  
 
   try {
     const response = await axios.post(

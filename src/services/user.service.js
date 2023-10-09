@@ -13,7 +13,7 @@ import axios from "axios";
 export const getUserPostsById = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
+    ;
     console.log(id);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/${id}`,
@@ -37,7 +37,7 @@ export const getUserPostsById = async (id) => {
 export const getUserInfoById = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
+    ;
     const response = await axios.get(
       `https://crashline.onrender.com/profile/user/${id}`,
 
@@ -61,6 +61,8 @@ export const getUserInfoById = async (id) => {
 export const updateUserPicture = async (id, image) => {
   try {
     const token = localStorage.getItem("token");
+    console.log(image)
+    
     const formData = new FormData();
     formData.append("picture", image);
 
@@ -77,7 +79,7 @@ export const updateUserPicture = async (id, image) => {
 
     console.log("Profile picture updated successfully");
     console.log(response.data);
-    return response.data.message;
+    return response.data;
   } catch (error) {
     console.error(error);
     console.error(error.response.data.error);
@@ -87,7 +89,7 @@ export const updateUserPicture = async (id, image) => {
 export const deleteProfilePicture = async (id) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
+    ;
     const response = await axios.delete(
       `https://crashline.onrender.com/profile/picture/${id}`,
 
@@ -110,7 +112,7 @@ export const deleteProfilePicture = async (id) => {
 export const updatePassword = async (id, oldPass, newPass) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
+    ;
     const response = await axios.put(
       `https://crashline.onrender.com/profile/${id}`,
 
@@ -137,7 +139,7 @@ export const updatePassword = async (id, oldPass, newPass) => {
 export const updateName = async (id, firstName, lastName) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
+    ;
     const response = await axios.put(
       `https://crashline.onrender.com/profile/name/${id}`,
       {
