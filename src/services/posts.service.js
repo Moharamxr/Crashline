@@ -11,9 +11,8 @@ import axios from "axios";
 // }
 export const getPosts = async () => {
   try {
-    
-  const token = localStorage.getItem("token");
-  
+    const token = localStorage.getItem("token");
+
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
 
@@ -34,9 +33,8 @@ export const getPosts = async () => {
 };
 export const getPostById = async (id) => {
   try {
-    
-  const token = localStorage.getItem("token");
-  
+    const token = localStorage.getItem("token");
+
     const response = await axios.get(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -48,6 +46,7 @@ export const getPostById = async (id) => {
       }
     );
     console.log("PostById fetched successfully");
+    console.log(response.data)
     return response.data;
   } catch (error) {
     console.error(error);
@@ -58,9 +57,8 @@ export const getPostById = async (id) => {
 
 export const addPost = async (newPostData) => {
   try {
-    
-  const token = localStorage.getItem("token");
-  
+    const token = localStorage.getItem("token");
+
     console.log(newPostData.image);
     const formData = new FormData();
     formData.append("title", newPostData.title);
@@ -86,9 +84,8 @@ export const addPost = async (newPostData) => {
 };
 export const updatePost = async (id, formData) => {
   try {
-    
-  const token = localStorage.getItem("token");
-  
+    const token = localStorage.getItem("token");
+
     const response = await axios.put(
       `https://crashline.onrender.com/posts/${id}`,
       formData,
@@ -109,9 +106,8 @@ export const updatePost = async (id, formData) => {
 };
 export const deletePost = async (id) => {
   try {
-    
-  const token = localStorage.getItem("token");
-  
+    const token = localStorage.getItem("token");
+
     const response = await axios.delete(
       `https://crashline.onrender.com/posts/${id}`,
 
@@ -133,9 +129,9 @@ export const deletePost = async (id) => {
 export const addLike = async (id) => {
   try {
     console.log(id);
-    
-  const token = localStorage.getItem("token");
-  
+
+    const token = localStorage.getItem("token");
+
     const response = await axios.post(
       `https://crashline.onrender.com/posts/${id}/like`,
       {},
@@ -160,7 +156,6 @@ export const addComment = async (id, content) => {
   console.log(content);
 
   const token = localStorage.getItem("token");
-  
 
   try {
     const response = await axios.post(
@@ -168,6 +163,32 @@ export const addComment = async (id, content) => {
       {
         content: content,
       },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    console.error(error.response.data);
+    throw error;
+  }
+};
+
+export const follow = async (id) => {
+  console.log(id);
+
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await axios.put(
+      `https://crashline.onrender.com/profile/${id}/follow`,
+      {},
       {
         headers: {
           "Content-Type": "application/json",

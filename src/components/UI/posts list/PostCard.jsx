@@ -3,6 +3,7 @@ import {
   addComment,
   addLike,
   deletePost,
+  follow,
   getPostById,
 } from "../../../services/posts.service";
 
@@ -18,7 +19,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(false);
 
+  const userId = localStorage.getItem('userId'); 
   const handleLike = async () => {
     setIsLiked(!isLiked);
     if (!isLiked) {
@@ -59,6 +62,11 @@ const PostCard = ({ p, user, getUserPosts }) => {
     setOpenComment(false);
     setToggleComment(!toggleComment);
   };
+  const handleFollow = async ()=>{
+    setIsFollowed(!isFollowed);
+    await follow(post.creator._id);
+
+  };
 
   const currentDate = new Date();
   const createdAtDate = new Date(post.createdAt);
@@ -67,39 +75,47 @@ const PostCard = ({ p, user, getUserPosts }) => {
     (currentDate - createdAtDate) / oneDayMilliseconds
   );
   return (
-    <div className="card col-12 ms-0 mb-1 z-index-n2">
-      <div className="row">
-        <div className="col-8 d-flex">
-          <img
-            className=" m-3 me-0 rounded-circle"
-            src={user ? path + user.picture : path + post.creator.picture}
-            alt="profileIcon"
-            width={40}
-            height={40}
-          />
-          <p className="fw-bold logo post-name  mt-4">
-            {post.creator.firstName} {user && user.firstName}
-            {post.creator.lastName}
-            {user && user.lastName}
-          </p>
-        </div>
-        <div className="col-2 offset-2 mt-4">
-          {user &&
-            (!isDeleting ? (
-              <i onClick={handleDelete} className="bi bi-trash3  del-btn" />
-            ) : (
+    <div className="card col-12 ms-0 mb-1 z-index-n2 ">
+      <div className="container-fluid w-100">
+        <div className="row">
+          <div className="col-2 p-3">
+            <img
+              className="rounded-circle"
+              src={user ? path + user.picture : path + post.creator.picture}
+              alt="profileIcon"
+              width={40}
+              height={40}
+            />
+          </div>
+          <div className="col-6 ps-1">
+            <p className="fw-bold logo mt-4">
+              {post.creator && post.creator.firstName}{" "}
+              {post.creator && post.creator.lastName}
+              {user && user.firstName} {user && user.lastName}
+            </p>
+          </div>
+
+          {user && (
+            <div className="col-1 offset-2 mt-4">
+              {(!isDeleting ? (
+              <i onClick={handleDelete} className="bi bi-trash3  del-btn" />) :
+              (
               <div class="spinner-border spinner-border-sm logo" role="status">
                 <span class="sr-only"></span>
               </div>
-            ))}
+              ))}
+            </div>
+          )}
+          {(!user&&post.creator._id!==userId)&&<div className="col-2 offset-1 pt-3">
+            <button className={`btn btn-${isFollowed?`outline-success`:`outline-secondary`}`}  onClick={handleFollow}>{isFollowed?<>Followed</>:<>Follow</>}</button>
+          </div>}
         </div>
       </div>
-
       <img
         src={path + post.image}
-        width={1000}
-        height={400}
-        className="card-img-top"
+        width={500}
+        height={500}
+        className="card-img-top post-img"
         alt="Post"
       />
       <div className="card-body">
@@ -118,9 +134,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
           <p className="">{likesCount} likes</p>
           <p className="text-dark">
             <span className="logo fw-medium">
-              {post.creator.firstName} {user && user.firstName}{" "}
-              {post.creator.lastName}
-              {user && user.lastName}{" "}
+              {post.creator && post.creator.firstName}{" "}
+              {post.creator && post.creator.lastName}
+              {user && user.firstName} {user && user.lastName}
             </span>
 
             {post.content}
@@ -155,9 +171,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
               view all comments {post.commentsCount}
             </p>
           ) : (
-            <p className="fw-light link-underline">
-              No comments yet
-            </p>
+            <p className="fw-light link-underline">No comments yet</p>
           )}
           {showComments &&
             postComments.map((comment) => (

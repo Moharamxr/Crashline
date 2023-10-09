@@ -24,18 +24,11 @@ const Profile = () => {
   const getUserPosts = async () => {
     try {
       setIsLoading(true);
-      if (internet) {
-        const data = await getUserPostsById(userId);
-        setPosts(data.posts.reverse());
-        setError(null);
-        setInternet(true);
-      }
+      const data = await getUserPostsById(userId);
+      setPosts(data.posts.reverse());
+      setError(null);
     } catch (error) {
-      if (error.message === "Network Error") {
-        setInternet(false);
-      } else {
-        setError(error.message);
-      }
+      setError(error.message);
       throw error;
     }
     setIsLoading(false);
@@ -43,20 +36,15 @@ const Profile = () => {
   const getUserInfo = async () => {
     try {
       setIsLoading(true);
-      if (internet) {
         const data = await getUserInfoById(userId);
         setUser(data.user);
         setError(null);
         setInternet(true);
         setIsLoading(false);
-      }
+      
     } catch (error) {
-      if (error.message === "Network Error") {
-        setInternet(false);
         setIsLoading(true);
-      } else {
         setError(error.response.data.message);
-      }
       throw error;
     }
     setIsLoading(false);
@@ -77,6 +65,7 @@ const Profile = () => {
     console.log("modal closed");
   };
   const path = "https://crashline.onrender.com/";
+  
   return (
     <>
       <div className="container-fluid">
@@ -88,7 +77,7 @@ const Profile = () => {
                   <div className="">
                     <img
                       className="rounded-circle mt-1 ms-5"
-                      src={user.picture ?path + user.picture : profilePhoto}
+                      src={user.picture ? path + user.picture : profilePhoto}
                       alt="profilePhoto"
                       width={140}
                       height={140}
@@ -111,7 +100,11 @@ const Profile = () => {
                         Edit profile
                       </button>
                     </div>
-                    <EditProfile isOpen={isOpen} onClose={closeModal} getUserInfo={getUserInfo} />
+                    <EditProfile
+                      isOpen={isOpen}
+                      onClose={closeModal}
+                      getUserInfo={getUserInfo}
+                    />
                     <div className=" col-sm-4 col-xs-4 col-12 ">
                       <button
                         className="btn one btn-dark btn-sm w-100 p-0 bg-trash"
@@ -126,10 +119,10 @@ const Profile = () => {
                       <span>Posts {posts.length}</span>
                     </div>
                     <div className="col-4 t-color text-center">
-                      <span>Followers 0</span>
+                      <span>Followers {user.followings&&user.followings.length}</span>
                     </div>
-                    <div className="col-4 t-color text-center">
-                      <span>Following 0</span>
+                    <div className="col-4 t-color text-center ms-1">
+                      <span>Following {user.followers&&user.followers.length}</span>
                     </div>
                   </div>
                 </div>
@@ -148,9 +141,8 @@ const Profile = () => {
                       </div>
                     )}
                     {posts.map((post) => (
-                      <div className="col-xl-4 col-md-5 p-1 ">
+                      <div key={post._id} className="col-xl-4 col-md-5 p-1 ">
                         <PostCard
-                          key={post._id}
                           p={post}
                           user={user}
                           getUserPosts={getUserPosts}

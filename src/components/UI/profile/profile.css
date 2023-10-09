@@ -30,13 +30,14 @@ color:#6936F5 ;
 .post-img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .del-btn{
     
     height: 40px;
     width: max-content;
 }
-.post-name{
-    color: #6936F5; 
-    margin-left: 5px;
+
+.w-x{
+    width: 100%;
 }
