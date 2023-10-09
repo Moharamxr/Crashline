@@ -1,25 +1,21 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import homeIcon from "../../../../assets/assets/home-icon.png";
-import searchIcon from "../../../../assets/assets/search-icon.png";
+import { NavLink, useNavigate } from "react-router-dom";
 import reelsIcon from "../../../../assets/assets/reels-icon.png";
-// import messagesIcon from "../../../../assets/assets/icons8-messenger-24.png";
-// import notificationsIcon from "../../../../assets/assets/favorite-icon.png";
-import createPostIcon from "../../../../assets/assets/create-post icon.png";
-import profileIcon from "../../../../assets/assets/icons8-account-24.png";
 import CreatePost from "../../create-post/CreatePost";
 
 const BottomNav = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate()
   const openModal = () => {
     setIsOpen(true);
     console.log('modal opened');
+    navigate('/profile')
   };
 
   const closeModal = () => {
     setIsOpen(false);
     console.log('modal closed');
+    navigate('/feed')
   };
   return (
     <div className="wrapper ">

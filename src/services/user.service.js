@@ -14,7 +14,6 @@ export const getUserPostsById = async (id) => {
   try {
     const token = localStorage.getItem("token");
     ;
-    console.log(id);
     const response = await axios.get(
       `https://crashline.onrender.com/profile/${id}`,
 
@@ -26,7 +25,6 @@ export const getUserPostsById = async (id) => {
       }
     );
     console.log("User posts fetched successfully");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -49,7 +47,6 @@ export const getUserInfoById = async (id) => {
       }
     );
     console.log("Posts info fetched successfully");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -153,9 +150,7 @@ export const updateName = async (id, firstName, lastName) => {
         },
       }
     );
-    console.log("Name Updated Successfully");
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   addComment,
   addLike,
@@ -59,6 +59,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
     setOpenComment(false);
     setToggleComment(!toggleComment);
   };
+  useEffect(() => {
+    console.log('PostCard rendered');
+  }, []);
 
   const currentDate = new Date();
   const createdAtDate = new Date(post.createdAt);
@@ -67,7 +70,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
     (currentDate - createdAtDate) / oneDayMilliseconds
   );
   return (
-    <div className="card col-12 m-2 z-index-n2">
+    <div className="card col-12 ms-0 mb-1 z-index-n2">
       <div className="row">
         <div className="col-8 d-flex">
           <img
@@ -155,11 +158,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
               view all comments {post.commentsCount}
             </p>
           ) : (
-            // <div className="">
-            //   <div className="row mt-5 p-1">
-            //     <div className="col"></div>
-            //   </div>
-            // </div>
             <p className="fw-light link-underline">
               No comments yet
             </p>

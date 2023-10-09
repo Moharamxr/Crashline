@@ -24,8 +24,7 @@ export const getPosts = async () => {
         },
       }
     );
-    console.log("Posts fetched successfully");
-    console.log(response.data);
+    console.log(response.data.message);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -49,7 +48,6 @@ export const getPostById = async (id) => {
       }
     );
     console.log("PostById fetched successfully");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -79,7 +77,6 @@ export const addPost = async (newPostData) => {
       }
     );
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -103,7 +100,6 @@ export const updatePost = async (id, formData) => {
       }
     );
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -127,7 +123,6 @@ export const deletePost = async (id) => {
       }
     );
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -153,7 +148,6 @@ export const addLike = async (id) => {
     );
 
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -183,7 +177,6 @@ export const addComment = async (id, content) => {
     );
 
     console.log(response.data.message);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

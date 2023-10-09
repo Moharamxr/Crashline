@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -6,11 +6,10 @@ import "./login.css";
 import { login } from "../../../services/auth.service";
 
 const Login = () => {
-  // const formErrors = localStorage.getItem("LoginErrorMessage");
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  // const isLoggedIn = localStorage.getItem("isLoggedIn");
   const initialValues = {
     email: "admin@test.com",
     password: "Admin123",
@@ -24,7 +23,6 @@ const Login = () => {
   const handleSubmit = async (values) => {
     // Perform login logic here
     setIsLoading(true);
-    console.log(values);
     try {
       await login(values);
       setIsLoading(false);

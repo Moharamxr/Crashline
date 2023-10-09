@@ -6,7 +6,6 @@ import SplashScreen from "./components/UI/splashScreen/SplashScreen";
 import Feed from "./components/UI/feed/Feed";
 import Profile from "./components/UI/profile/Profile";
 import Layout from "./components/UI/layout/Layout";
-import Posts from "./components/UI/posts list/Posts";
 import Comments from "./components/UI/comment section/Comments";
 
 function App() {

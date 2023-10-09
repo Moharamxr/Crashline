@@ -16,11 +16,11 @@ export const login = async (loginData) => {
     localStorage.setItem("userId",response.data.user._id );
     localStorage.setItem("token", response.data.token)
     localStorage.setItem("isLoggedIn", "true");
-    console.log(response);
+    console.log(response.data.message);
     // const token = response.data.token;
     // document.cookie = `token=${token}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;
 
-    console.log(localStorage.getItem("token"));
+    
     return response.data;
   } catch (error) {
     console.log(error.response.data.error);
