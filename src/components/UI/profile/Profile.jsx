@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import profilePhoto from "../../../assets/profilePic.png";
 import "./profile.css";
 import EditProfile from "../edit-profile/EditProfile";
-import img from "../../../assets/wallpaperflare.com_wallpaper (3).jpg";
 import {
   getUserInfoById,
   getUserPostsById,
@@ -128,7 +127,7 @@ const Profile = () => {
                     </div>
                     <div className="col-4 t-color text-center">
                       <span>Followers 0</span>
-                    </div>{" "}
+                    </div>
                     <div className="col-4 t-color text-center">
                       <span>Following 0</span>
                     </div>

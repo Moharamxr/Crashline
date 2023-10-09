@@ -65,7 +65,7 @@ export const updateUserPicture = async (id, image) => {
 
     const response = await axios.put(
       `https://crashline.onrender.com/profile/picture/${id}`,
-      formData,
+      {image : image},
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -83,6 +83,7 @@ export const updateUserPicture = async (id, image) => {
     throw error;
   }
 };
+
 export const deleteProfilePicture = async (id) => {
   try {
     const token = localStorage.getItem("token");

@@ -59,9 +59,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
     setOpenComment(false);
     setToggleComment(!toggleComment);
   };
-  useEffect(() => {
-    console.log('PostCard rendered');
-  }, []);
 
   const currentDate = new Date();
   const createdAtDate = new Date(post.createdAt);
