@@ -81,13 +81,13 @@ const Profile = () => {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-10 offset-md-3 offset-lg-2  col-12">
-            <div className=" container-fluid mt-2">
-              <div className="row ">
+          <div className="col-md-10 offset-md-3 offset-lg-2 col-12">
+            <div className=" container-fluid">
+              <div className="row">
                 <div className="col-3 centred">
                   <div className="">
                     <img
-                      className="rounded-circle ms-5"
+                      className="rounded-circle mt-1 ms-5"
                       src={user.picture ?path + user.picture : profilePhoto}
                       alt="profilePhoto"
                       width={140}
@@ -97,7 +97,7 @@ const Profile = () => {
                 </div>
                 <div className="col-7  offset-2">
                   <div className="row ">
-                    <div className="col-sm-3 offset-1 col-12">
+                    <div className="col-sm-3 offset-1 col-12 m-0">
                       <span className="t-color fw-bold">
                         {user.firstName} {user.lastName}
                       </span>

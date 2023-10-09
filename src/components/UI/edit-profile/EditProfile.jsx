@@ -107,7 +107,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
-                    firstname
+                    firstName
                   </label>
                 </div>
                 <div className="form-floating">
@@ -120,7 +120,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                     onChange={(e) => setLastName(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
-                    lastname
+                    lastName
                   </label>
                 </div>
               </div>

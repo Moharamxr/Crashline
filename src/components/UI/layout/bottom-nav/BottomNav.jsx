@@ -5,29 +5,30 @@ import CreatePost from "../../create-post/CreatePost";
 
 const BottomNav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const openModal = () => {
     setIsOpen(true);
-    console.log('modal opened');
-    navigate('/profile')
+    console.log("modal opened");
+    navigate("/profile");
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    console.log('modal closed');
-    navigate('/feed')
+    console.log("modal closed");
+    navigate("/feed");
   };
   return (
-    <div className="wrapper ">
+    <div className="wrapper">
       <nav id="bottom-nav" className="mobile-only">
         <ul className="bottom-nav-list">
           <li className="active">
             <NavLink to={"/feed"}>
-            <i className="bi bi-house me-1"/>            </NavLink>
+              <i className="bi bi-house me-1" />
+            </NavLink>
           </li>
           <li>
             <NavLink to={"/feed"}>
-            <i className="bi bi-search me-1" />
+              <i className="bi bi-search me-1" />
             </NavLink>
           </li>
           <li>
@@ -35,15 +36,15 @@ const BottomNav = () => {
               <img className="bott-icon" src={reelsIcon} alt="reelsIcon" />
             </NavLink>
           </li>
-          
+
           <li onClick={openModal}>
-            <NavLink >
-            <i className="bi bi-plus-square me-1" />
+            <NavLink>
+              <i className="bi bi-plus-square me-1" />
             </NavLink>
           </li>
           <li>
             <NavLink to={"/profile"}>
-            <i className="bi bi-person fs me-1" />
+              <i className="bi bi-person fs me-1" />
             </NavLink>
           </li>
         </ul>

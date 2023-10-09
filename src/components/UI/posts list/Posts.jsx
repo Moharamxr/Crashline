@@ -26,7 +26,7 @@ const Posts = () => {
   return (
     <>
       {posts.length === 0 && !isLoading && !error ? (
-        <p className="centred logo">No posts yet!!</p>
+        <p className="centred logo mt-5">No posts yet!!</p>
       ) : (
         posts.map((post) => <PostCard key={post._id} p={post} />)
       )}
