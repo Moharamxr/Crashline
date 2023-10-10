@@ -117,7 +117,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
                 style={{
                   backgroundColor: isFollowed ? "#6936F5" : "#ffffff",
                 }}
-                style = {{color : isFollowed?"white":'#6936f5'}}
+                // style = {{color : '#6936f5'}}
                 onClick={handleFollow}
               >
                 {isFollowed ? <>Followed</> : <>Follow</>}
