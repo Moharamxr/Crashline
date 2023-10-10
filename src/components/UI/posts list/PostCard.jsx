@@ -19,9 +19,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
-  const [isFollowed, setIsFollowed] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(post.creator&&post.creator.isFollowed);
 
-  const userId = localStorage.getItem('userId'); 
+  const userId = localStorage.getItem("userId");
   const handleLike = async () => {
     setIsLiked(!isLiked);
     if (!isLiked) {
@@ -62,10 +62,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
     setOpenComment(false);
     setToggleComment(!toggleComment);
   };
-  const handleFollow = async ()=>{
+  const handleFollow = async () => {
     setIsFollowed(!isFollowed);
     await follow(post.creator._id);
-
   };
 
   const currentDate = new Date();
@@ -87,7 +86,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
               height={40}
             />
           </div>
-          <div className="col-6 ps-1">
+          <div className="col-6 ps-1 pe-0">
             <p className="fw-bold logo mt-4">
               {post.creator && post.creator.firstName}{" "}
               {post.creator && post.creator.lastName}
@@ -97,18 +96,31 @@ const PostCard = ({ p, user, getUserPosts }) => {
 
           {user && (
             <div className="col-1 offset-2 mt-4">
-              {(!isDeleting ? (
-              <i onClick={handleDelete} className="bi bi-trash3  del-btn" />) :
-              (
-              <div class="spinner-border spinner-border-sm logo" role="status">
-                <span class="sr-only"></span>
-              </div>
-              ))}
+              {!isDeleting ? (
+                <i onClick={handleDelete} className="bi bi-trash3  del-btn" />
+              ) : (
+                <div
+                  class="spinner-border spinner-border-sm logo"
+                  role="status"
+                >
+                  <span class="sr-only"></span>
+                </div>
+              )}
             </div>
           )}
-          {(!user&&post.creator._id!==userId)&&<div className="col-2 offset-1 pt-3">
-            <button className={`btn btn-${isFollowed?`outline-success`:`outline-secondary`}`}  onClick={handleFollow}>{isFollowed?<>Followed</>:<>Follow</>}</button>
-          </div>}
+          {!user && post.creator._id !== userId && (
+            <div className="col-2 offset-2 ms-2 ps-2 pt-3">
+              <button
+                className={`btn btn-${isFollowed?`dark`:`light`}`}
+                style={{
+                  backgroundColor: isFollowed ? "#6936F5" : "#ffffff",
+                }}
+                onClick={handleFollow}
+              >
+                {isFollowed ? <>Followed</> : <>Follow</>}
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <img
