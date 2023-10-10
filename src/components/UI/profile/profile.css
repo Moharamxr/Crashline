@@ -41,6 +41,8 @@ color:#6936F5 ;
 .w-x{
     width: 100%;
 }
-.op{
-    background-color: beige;
+.btn:hover {
+    color: #6936f5;
+    background-color: var(--bs-btn-hover-bg);
+    border: none;
 }

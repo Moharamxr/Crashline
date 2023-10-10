@@ -27,7 +27,9 @@ const Sidebar = () => {
     <div className="wrapper">
       <nav id="sidebar">
         <div className="sidebar-header">
+        <NavLink to={"/feed"}>
           <h3>Crashline</h3>
+          </NavLink>
         </div>
         <ul className="list-unstyled components">
           <li >
