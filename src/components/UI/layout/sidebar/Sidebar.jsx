@@ -26,10 +26,10 @@ const Sidebar = () => {
   return (
     <div className="wrapper">
       <nav id="sidebar">
-        <div className="sidebar-header">
-        <NavLink to={"/feed"}>
-          <h3>Crashline</h3>
-          </NavLink>
+        <div className="sidebar-header" >
+        
+          <h3 onClick={()=>navigate('/feed')}>Crashline</h3>
+          
         </div>
         <ul className="list-unstyled components">
           <li >

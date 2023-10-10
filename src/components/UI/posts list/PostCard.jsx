@@ -19,7 +19,9 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [postComments, setPostComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
-  const [isFollowed, setIsFollowed] = useState(post.creator&&post.creator.isFollowed);
+  const [isFollowed, setIsFollowed] = useState(
+    post.creator && post.creator.isFollowed
+  );
 
   const userId = localStorage.getItem("userId");
   const handleLike = async () => {
@@ -111,10 +113,11 @@ const PostCard = ({ p, user, getUserPosts }) => {
           {!user && post.creator._id !== userId && (
             <div className="col-2 offset-2 ms-2 ps-2 pt-3">
               <button
-                className={`btn btn-${isFollowed?`dark`:`light`}`}
+                className={`btn btn-${isFollowed ? `dark` : ``}`}
                 style={{
                   backgroundColor: isFollowed ? "#6936F5" : "#ffffff",
                 }}
+                style = {{color : isFollowed?"white":'#6936f5'}}
                 onClick={handleFollow}
               >
                 {isFollowed ? <>Followed</> : <>Follow</>}
