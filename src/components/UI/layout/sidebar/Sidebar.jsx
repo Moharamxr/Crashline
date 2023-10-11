@@ -10,12 +10,14 @@ const Sidebar = () => {
   const openModal = () => {
     setIsOpen(true);
     console.log("modal opened");
-    navigate('/profile')
+    
   };
 
   const closeModal = () => {
     setIsOpen(false);
     console.log("modal closed");
+    navigate('/');
+    navigate('/feed')
   };
   
   const handleSignOut = () => {

@@ -14,6 +14,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [openComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState("");
+  const [commentsCount, setCommentsCount] = useState(post.commentsCount)
   const [isLoadingComment, setIsLoadingComment] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [postComments, setPostComments] = useState([]);
@@ -36,7 +37,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   };
   const getComments = async () => {
     setShowComments(!showComments);
-    if (post.commentsCount > 0 && !showComments) {
+    if (commentsCount > 0 && !showComments) {
       const data = await getPostById(post._id);
       setPostComments(data.post.comments.reverse());
     }
@@ -57,8 +58,10 @@ const PostCard = ({ p, user, getUserPosts }) => {
       setIsLoadingComment(true);
       console.log(comment);
       await addComment(post._id, comment);
-      openCommentSection(false);
+      commentsCount++;
       getComments();
+      openCommentSection(false);
+      
     } catch (error) {}
     setIsLoadingComment(false);
     setOpenComment(false);
@@ -176,13 +179,13 @@ const PostCard = ({ p, user, getUserPosts }) => {
                 className="btn btn-dark col-3 p-0 m-0 "
                 style={{ backgroundColor: "#6936F5" }}
               >
-                {isLoadingComment ? <>Commenting</> : <>comment</>}
+                {isLoadingComment ? <>commenting</> : <>comment</>}
               </button>
             </div>
           </div>
-          {post.commentsCount > 0 ? (
+          {commentsCount > 0 ? (
             <p className="fw-light link-underline" onClick={getComments}>
-              view all comments {post.commentsCount}
+              view all {commentsCount} comments
             </p>
           ) : (
             <p className="fw-light link-underline">No comments yet</p>

@@ -23,22 +23,24 @@ const CreatePost = ({ isOpen, onClose }) => {
       content: content,
     };
     if (content !== "" && image) {
-      setError('')
+      setError("");
       setIsLoading(true);
       try {
         await addPost(newData);
-        setError('')
-        setContent('')
-        setImage(null)
+        setError("");
+        setContent("");
+        setImage(null);
         onClose();
         setIsLoading(false);
+        document.getElementById("img-inp").value = "";
+        document.getElementById("textMessage").value = "";
         navigate("/feed");
       } catch (error) {
         setError(error);
         setIsLoading(false);
       }
       setIsLoading(false);
-    }else{
+    } else {
       setError("image or title not found");
     }
   };

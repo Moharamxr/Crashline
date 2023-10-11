@@ -27,7 +27,9 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
       try {
         await updateUserPicture(userId, newData.image);
         setImageError("");
-        
+        document.getElementById("img-edit").value = "";
+        document.getElementById("setFirstName").value = "";
+        document.getElementById("setLastName").value = "";
         onClose();
         setIsLoading(false);
       } catch (error) {
