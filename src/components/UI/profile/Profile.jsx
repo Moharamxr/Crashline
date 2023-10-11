@@ -7,6 +7,7 @@ import {
   getUserPostsById,
 } from "../../../services/user.service";
 import PostCard from "../posts list/PostCard";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const userId = localStorage.getItem("userId");
@@ -20,7 +21,7 @@ const Profile = () => {
   const [error, setError] = useState(null);
   const [internet, setInternet] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
   const getUserPosts = async () => {
     try {
       setIsLoading(true);
@@ -28,7 +29,10 @@ const Profile = () => {
       setPosts(data.posts.reverse());
       setError(null);
     } catch (error) {
-      setError(error.message);
+      if(error.response.data.error==="Not Authorized. Token has been manipulated"){
+        navigate('/login');
+      }
+      setError(error.response.data.error);
       throw error;
     }
     setIsLoading(false);

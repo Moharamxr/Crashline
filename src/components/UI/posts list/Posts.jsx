@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import { getPosts } from "../../../services/posts.service";
+import { useNavigate } from "react-router-dom";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
   const getData = async () => {
     try {
       setIsLoading(true);
@@ -14,6 +16,9 @@ const Posts = () => {
       setError("");
       setIsLoading(false);
     } catch (error) {
+      if(error.response.data.error==="Not Authorized. Token has been manipulated"){
+        navigate('/login');
+      }
       setError(error.message);
       setIsLoading(false);
       throw error;
@@ -45,8 +50,8 @@ const Posts = () => {
         </div>
       )}
 
-      <div className="">
-        <div className="row mt-5">
+      <div className="row mt-5">
+        <div className="row mt-3">
           <div className="col"></div>
         </div>
       </div>

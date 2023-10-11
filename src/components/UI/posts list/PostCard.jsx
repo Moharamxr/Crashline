@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   addComment,
   addLike,
@@ -71,7 +71,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
 
   const currentDate = new Date();
   const createdAtDate = new Date(post.createdAt);
-  const oneDayMilliseconds = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+  const oneDayMilliseconds = 24 * 60 * 60 * 1000;
   const daysAgo = Math.round(
     (currentDate - createdAtDate) / oneDayMilliseconds
   );
@@ -117,7 +117,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
                 style={{
                   backgroundColor: isFollowed ? "#6936F5" : "#ffffff",
                 }}
-                // style = {{color : '#6936f5'}}
                 onClick={handleFollow}
               >
                 {isFollowed ? <>Followed</> : <>Follow</>}
@@ -126,13 +125,13 @@ const PostCard = ({ p, user, getUserPosts }) => {
           )}
         </div>
       </div>
-      <img
-        src={path + post.image}
-        width={500}
-        height={500}
-        className="card-img-top post-img"
-        alt="Post"
-      />
+      <div className="card-img-container">
+        <img
+          src={path + post.image}
+          className="card-img-top post-img"
+          alt="Post"
+        />
+      </div>
       <div className="card-body">
         <i
           className={`bi bi-heart${isLiked ? `-fill` : ``} me-2 post-icons`}
