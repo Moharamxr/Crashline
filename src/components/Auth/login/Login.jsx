@@ -9,12 +9,12 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = localStorage.getItem("isLoggedIn")==='true';
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/feed");
     }
-  }, [isLoggedIn]);
+  }, []);
   const initialValues = {
     email: "admin@test.com",
     password: "Admin123",
