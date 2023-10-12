@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { addPost } from "../../../services/posts.service";
-import { useNavigate } from "react-router-dom";
 
 const CreatePost = ({ isOpen, onClose }) => {
   const [image, setImage] = useState(null);
@@ -8,8 +7,7 @@ const CreatePost = ({ isOpen, onClose }) => {
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
+  const imgInput =useRef();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -30,11 +28,9 @@ const CreatePost = ({ isOpen, onClose }) => {
         setError("");
         setContent("");
         setImage(null);
+        imgInput.current.value=null;
         onClose();
         setIsLoading(false);
-        document.getElementById("img-inp").value = "";
-        document.getElementById("textMessage").value = "";
-        navigate("/feed");
       } catch (error) {
         setError(error);
         setIsLoading(false);
@@ -78,6 +74,7 @@ const CreatePost = ({ isOpen, onClose }) => {
                     id="img-inp"
                     className="form-control"
                     type="file"
+                    ref={imgInput}
                     onChange={handleImageChange}
                   />
                 </div>
@@ -90,6 +87,7 @@ const CreatePost = ({ isOpen, onClose }) => {
                     placeholder="What would you like to say?"
                     id="textMessage"
                     onChange={(e) => setContent(e.target.value)}
+                    value={content}
                   />
                   <label className="form-label" htmlFor="textMessage">
                     add description

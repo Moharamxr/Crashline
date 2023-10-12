@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { updateName, updateUserPicture } from "../../../services/user.service";
 
 const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
@@ -8,7 +8,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
   const [imageError, setImageError] = useState("");
   const [nameError, setNameError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const imgInput =useRef();
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -26,10 +26,11 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
       setIsLoading(true);
       try {
         await updateUserPicture(userId, newData.image);
+        setFirstName('')
+        setLastName('')
+        setImage(null)
+        imgInput.current.value=null;
         setImageError("");
-        document.getElementById("img-edit").value = "";
-        document.getElementById("setFirstName").value = "";
-        document.getElementById("setLastName").value = "";
         onClose();
         setIsLoading(false);
       } catch (error) {
@@ -95,6 +96,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                     id="img-edit"
                     className="form-control"
                     type="file"
+                    ref={imgInput}
                     onChange={handleImageChange}
                   />
                 </div>
@@ -106,6 +108,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                     name="setFirstName"
                     placeholder="What would you like to say?"
                     id="setFirstName"
+                    value ={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
@@ -119,6 +122,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                     type="text"
                     placeholder="What would you like to say?"
                     id="setLastName"
+                    value ={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                   />
                   <label className="form-label" htmlFor="textMessage">
@@ -133,6 +137,7 @@ const EditProfile = ({ isOpen, onClose, getUserInfo }) => {
                 className="btn text-light"
                 style={{ backgroundColor: "#6936F5" }}
                 onClick={handleUpdateUserInfo}
+                disabled={!isValid}
               >
                 {isLoading ? <>Updating new data...</> : <>Update</>}
               </button>
