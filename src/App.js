@@ -23,7 +23,10 @@ function App() {
           <Route path="details/:id" element={<Comments />} />
         </Route>
         <Route path="/profile" element={<Profile />} />
-        <Route path="/createPost" element={<Plank />} />
+        {/* <Route path="/createPost" element={<Plank />} /> */}
+        
+        <Route path="/*" element={<Plank />} />
+        
       </Routes>
     </Layout>
   );

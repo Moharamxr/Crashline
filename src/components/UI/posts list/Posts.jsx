@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import { getPosts } from "../../../services/posts.service";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const Posts = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
-  const getData = async () => {
+  const getData = useCallback( async () => {
     try {
       setIsLoading(true);
       const data = await getPosts();
@@ -24,10 +24,10 @@ const Posts = () => {
       throw error;
     }
     setIsLoading(false);
-  };
+  },[]);
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
   return (
     <>
       {posts.length === 0 && !isLoading && !error ? (
