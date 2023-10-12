@@ -7,6 +7,7 @@ import Feed from "./components/UI/feed/Feed";
 import Profile from "./components/UI/profile/Profile";
 import Layout from "./components/UI/layout/Layout";
 import Comments from "./components/UI/comment section/Comments";
+import Plank from "./components/UI/plank/Plank";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="details/:id" element={<Comments />} />
         </Route>
         <Route path="/profile" element={<Profile />} />
-        <Route path="/createPost" element={<Feed />} />
+        <Route path="/createPost" element={<Plank />} />
       </Routes>
     </Layout>
   );

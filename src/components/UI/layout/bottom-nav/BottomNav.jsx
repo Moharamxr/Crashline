@@ -9,14 +9,14 @@ const BottomNav = () => {
   const openModal = () => {
     setIsOpen(true);
     console.log("modal opened");
-    
+    // navigate("/createPost");
   };
 
   const closeModal = () => {
     setIsOpen(false);
     console.log("modal closed");
-    navigate("/");
-    navigate("/feed");
+    // navigate("/feed");
+    window.location.reload();
   };
   return (
     <div className="wrapper">

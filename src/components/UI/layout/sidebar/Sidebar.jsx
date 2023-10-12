@@ -10,14 +10,14 @@ const Sidebar = () => {
   const openModal = () => {
     setIsOpen(true);
     console.log("modal opened");
-    
+    // navigate('/createPost');
   };
 
   const closeModal = () => {
     setIsOpen(false);
     console.log("modal closed");
-    navigate('/');
-    navigate('/feed')
+    // navigate('/feed')
+    window.location.reload();
   };
   
   const handleSignOut = () => {

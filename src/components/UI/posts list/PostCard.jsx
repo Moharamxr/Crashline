@@ -14,7 +14,7 @@ const PostCard = ({ p, user, getUserPosts }) => {
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [openComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState("");
-  const [commentsCount, setCommentsCount] = useState(post.commentsCount)
+  let commentsCount = post.commentsCount;
   const [isLoadingComment, setIsLoadingComment] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [postComments, setPostComments] = useState([]);
@@ -61,7 +61,6 @@ const PostCard = ({ p, user, getUserPosts }) => {
       commentsCount++;
       getComments();
       openCommentSection(false);
-      
     } catch (error) {}
     setIsLoadingComment(false);
     setOpenComment(false);
