@@ -7,8 +7,8 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const getData = useCallback(async () => {
+  const navigate = useNavigate()
+  const getData = useCallback( async () => {
     try {
       setIsLoading(true);
       const data = await getPosts();
@@ -16,18 +16,15 @@ const Posts = () => {
       setError("");
       setIsLoading(false);
     } catch (error) {
-      if (
-        error.response.data.error ===
-        "Not Authorized. Token has been manipulated"
-      ) {
-        navigate("/login");
+      if(error.response.data.error==="Not Authorized. Token has been manipulated"){
+        navigate('/login');
       }
       setError(error.message);
       setIsLoading(false);
       throw error;
     }
     setIsLoading(false);
-  }, []);
+  },[]);
   useEffect(() => {
     getData();
   }, [getData]);
