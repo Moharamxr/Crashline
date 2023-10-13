@@ -47,6 +47,9 @@ const Profile = () => {
         setIsLoading(false);
       
     } catch (error) {
+      if(error.response.status===401){
+        navigate('/login');
+      }
         setIsLoading(true);
         setError(error.response.data.message);
       throw error;
