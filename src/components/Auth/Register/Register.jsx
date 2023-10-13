@@ -10,7 +10,7 @@ const Register = () => {
   const [showError, setShowError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate(false);
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = localStorage.getItem("isLoggedIn")==='true';
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/feed");

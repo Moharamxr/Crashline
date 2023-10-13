@@ -38,7 +38,6 @@ const Login = () => {
       console.error(error);
       const timeout = setTimeout(() => {
         setShowError(false);
-        localStorage.setItem("LoginErrorMessage", "");
       }, 3000);
 
       return () => clearTimeout(timeout);

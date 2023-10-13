@@ -12,7 +12,6 @@ export const login = async (loginData) => {
     );
     console.log("Login successful");
     localStorage.setItem("userData", JSON.stringify(loginData));
-    localStorage.setItem("LoginErrorMessage", "");
     localStorage.setItem("userId",response.data.user._id );
     localStorage.setItem("token", response.data.token)
     localStorage.setItem("isLoggedIn", true);
@@ -23,8 +22,8 @@ export const login = async (loginData) => {
     
     return response.data;
   } catch (error) {
+    console.log(error)
     console.log(error.response.data.error);
-    localStorage.setItem("LoginErrorMessage", error.response.data.error);
     throw error;
   }
 };
