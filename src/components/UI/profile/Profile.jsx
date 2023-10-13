@@ -29,7 +29,7 @@ const Profile = () => {
       setPosts(data.posts.reverse());
       setError(null);
     } catch (error) {
-      if(error.response.data.error==="Not Authorized. Token has been manipulated"){
+      if(error.response.status===401){
         navigate('/login');
       }
       setError(error.response.data.error);
