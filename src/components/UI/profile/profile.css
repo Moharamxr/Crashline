@@ -49,7 +49,7 @@ color:#6936F5 ;
 .card-img-container {
     width: 100%;
     height: 0;
-    padding-bottom: 100%; /* Maintain a 1:1 aspect ratio */
+    padding-bottom: 100%; 
     position: relative;
   }
   
@@ -59,5 +59,6 @@ color:#6936F5 ;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Maintain image aspect ratio and fill container */
+    object-fit: cover; 
   }
+  

@@ -15,7 +15,7 @@ export const login = async (loginData) => {
     localStorage.setItem("LoginErrorMessage", "");
     localStorage.setItem("userId",response.data.user._id );
     localStorage.setItem("token", response.data.token)
-    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("isLoggedIn", true);
     console.log(response.data.message);
     // const token = response.data.token;
     // document.cookie = `token=${token}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;

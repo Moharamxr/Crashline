@@ -22,7 +22,7 @@ const Sidebar = () => {
   
   const handleSignOut = () => {
     localStorage.setItem('token','');
-    localStorage.setItem("isLoggedIn", "false");
+    localStorage.setItem("isLoggedIn", false);
     navigate('/login');
   };
   return (
