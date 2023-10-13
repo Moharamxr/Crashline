@@ -11,8 +11,12 @@ import axios from "axios";
 // }
 export const getPosts = async () => {
   try {
-    const token = localStorage.getItem("token");
-
+    let token = localStorage.getItem("token");
+    const tempToken = localStorage.getItem("tempToken");
+    if (token!==tempToken) {
+      token = tempToken;
+      localStorage.setItem("token", tempToken);
+    }
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
 
