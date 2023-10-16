@@ -27,6 +27,9 @@ const Posts = () => {
   },[]);
   useEffect(() => {
     getData();
+    setTimeout(function() {
+      localStorage.setItem('token','')
+    }, 24 * 60 * 60 * 1000);
   }, [getData]);
   return (
     <>
