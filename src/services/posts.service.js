@@ -11,15 +11,10 @@ import axios from "axios";
 // }
 export const getPosts = async () => {
   try {
-    let token = localStorage.getItem("token");
-    const tempToken = localStorage.getItem("tempToken");
-    if (token!==tempToken) {
-      token = tempToken;
-      localStorage.setItem("token", tempToken);
-    }
+    const token = localStorage.getItem("token");
+   
     const response = await axios.get(
       "https://crashline.onrender.com/posts",
-
       {
         headers: {
           "Content-Type": "application/json",
