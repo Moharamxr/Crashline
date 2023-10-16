@@ -8,6 +8,8 @@ const Posts = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
   const getData = useCallback( async () => {
     try {
       setIsLoading(true);
@@ -18,6 +20,7 @@ const Posts = () => {
     } catch (error) {
       if(error.response.status===401){
         navigate('/login');
+        return;
       }
       setError(error.message);
       setIsLoading(false);
@@ -27,9 +30,6 @@ const Posts = () => {
   },[]);
   useEffect(() => {
     getData();
-    setTimeout(function() {
-      localStorage.setItem('token','')
-    }, 24 * 60 * 60 * 1000);
   }, [getData]);
   return (
     <>

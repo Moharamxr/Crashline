@@ -12,18 +12,16 @@ export const login = async (loginData) => {
     );
     console.log("Login successful");
     localStorage.setItem("userData", JSON.stringify(loginData));
-    localStorage.setItem("userId",response.data.user._id );
-    localStorage.setItem("token", response.data.token)
-    localStorage.setItem("tempToken", response.data.token)
+    localStorage.setItem("userId", response.data.user._id);
+    localStorage.setItem("token", response.data.token);
+    setTimeout(function () {
+      localStorage.setItem("token", "");
+    }, 24 * 60 * 60 * 1000);
     localStorage.setItem("isLoggedIn", true);
     console.log(response.data.message);
-    // const token = response.data.token;
-    // document.cookie = `token=${token}; expires=Thu, 1 Jan 2024 12:00:00 UTC; path=/`;
-
-    
     return response.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     console.log(error.response.data.error);
     throw error;
   }
@@ -42,7 +40,7 @@ export const register = async (registerData) => {
     );
     localStorage.setItem("RegisterErrorMessage", "");
     console.log("Registration successful");
-    
+
     return response.data;
   } catch (error) {
     console.error(error);
@@ -50,4 +48,3 @@ export const register = async (registerData) => {
     throw error;
   }
 };
-

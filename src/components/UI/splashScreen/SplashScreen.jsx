@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const SplashScreen = () => {
   const navigate = useNavigate();
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  localStorage.removeItem("tempToken");
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,7 +20,7 @@ const SplashScreen = () => {
 
   return (
     <div className="container">
-      <div className=" centred">
+      <div className="centred">
         <img className="splashScreen " src={logo} alt="logo" />
       </div>
     </div>
