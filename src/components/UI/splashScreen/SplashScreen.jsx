@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const SplashScreen = () => {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.get("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   useEffect(() => {
     setTimeout(() => {
