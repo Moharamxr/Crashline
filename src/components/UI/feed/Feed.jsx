@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./feed.css";
 import Posts from "../posts list/Posts";
 import TopBar from "./top-nav/TopBar";
+import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
-  
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(function () {
+      localStorage.setItem("isLoggedIn", "false");
+      console.log("logged out");
+      navigate("/");
+    }, 24 * 60 * 60 * 1000);
+  }, []);
   return (
     <div className="container">
       <div className="row">
