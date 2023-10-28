@@ -14,9 +14,6 @@ export const login = async (loginData) => {
     localStorage.setItem("userData", JSON.stringify(loginData));
     localStorage.setItem("userId", response.data.user._id);
     localStorage.setItem("token", response.data.token);
-    setTimeout(function () {
-      localStorage.setItem("token", "");
-    }, 24 * 60 * 60 * 1000);
     localStorage.setItem("isLoggedIn", true);
     console.log(response.data.message);
     return response.data;

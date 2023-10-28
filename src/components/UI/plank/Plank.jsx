@@ -12,4 +12,4 @@ const Plank = () => {
   )
 }
 
-export default Plank
+export default Plank;

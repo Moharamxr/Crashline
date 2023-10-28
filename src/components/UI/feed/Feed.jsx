@@ -8,10 +8,11 @@ const Feed = () => {
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(function () {
-      localStorage.setItem("isLoggedIn", "false");
+      localStorage.setItem('token','')
+      localStorage.setItem("isLoggedIn", false);
       console.log("logged out");
       navigate("/");
-    }, 24 * 60 * 60 * 1000);
+    }, 60* 1000);
   }, []);
   return (
     <div className="container">

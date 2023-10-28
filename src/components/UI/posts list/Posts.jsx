@@ -19,7 +19,7 @@ const Posts = () => {
       setIsLoading(false);
     } catch (error) {
       if(error.response.status===401){
-        navigate('/login');
+        navigate('/');
         return;
       }
       setError(error.message);
