@@ -28,6 +28,7 @@ const Posts = () => {
     }
     setIsLoading(false);
   },[]);
+  
   useEffect(() => {
     getData();
   }, [getData]);

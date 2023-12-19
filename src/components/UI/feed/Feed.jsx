@@ -12,7 +12,7 @@ const Feed = () => {
       localStorage.setItem("isLoggedIn", false);
       console.log("logged out");
       navigate("/");
-    }, 60* 1000);
+    }, 24*60*60* 1000);
   }, []);
   return (
     <div className="container">
