@@ -22,6 +22,7 @@ const Posts = () => {
         navigate('/');
         return;
       }
+      console.log(error.response.status)
       setError(error.message);
       setIsLoading(false);
       throw error;
